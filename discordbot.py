@@ -1,12 +1,12 @@
 from discord.ext import commands
-from discord import Intents
+import discord
 from os import getenv
 import traceback
 import random
 
-Intents = Intents.default()
-Intents.members = True
-bot = commands.Bot(command_prefix="/", intents=Intents)
+
+discord.Intents.members = True
+bot = commands.Bot(command_prefix="/", intents=discord.Intents.all())
 
 BOT_COMMAND_CHANNEL_ID = 892796029362139170
 red_team_ID = 948050118031077376
@@ -17,6 +17,9 @@ async def on_command_error(ctx, error):
     orig_error = getattr(error, "original", error)
     error_msg = ''.join(traceback.TracebackException.from_exception(orig_error).format())
     await ctx.send(error_msg)
+    
+async def on_ready():
+    print('We have logged in as {0}'.format(bot.user))
 
 
 @bot.command()
