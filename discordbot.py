@@ -6,7 +6,7 @@ import random
 
 
 discord.Intents.members = True
-bot = commands.Bot(command_prefix="/", intents=discord.Intents.all())
+bot = commands.Bot(command_prefix='/', intents=discord.Intents.all())
 
 
 BOT_COMMAND_CHANNEL_ID = 892796029362139170
