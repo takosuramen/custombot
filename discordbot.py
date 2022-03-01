@@ -6,7 +6,7 @@ import random
 
 Intents = Intents.default()
 Intents.members = True
-bot = commands.Bot(command_prefix="/", intents=intents)
+bot = commands.Bot(command_prefix="/", intents=Intents)
 
 BOT_COMMAND_CHANNEL_ID = 892796029362139170
 red_team_ID = 948050118031077376
