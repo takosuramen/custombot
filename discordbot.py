@@ -1,18 +1,16 @@
 from discord.ext import commands
+from discord import Intents
 from os import getenv
 import traceback
 import random
 
-Intents = discord.Intents.default()
+Intents = Intents.default()
 Intents.members = True
-client = discord.Client(intents=Intents)
+bot = commands.Bot(command_prefix="/", intents=intents)
 
 BOT_COMMAND_CHANNEL_ID = 892796029362139170
 red_team_ID = 948050118031077376
 blue_team_ID = 948050118572138536
-
-bot = commands.Bot(command_prefix='/')
-
 
 @bot.event
 async def on_command_error(ctx, error):
