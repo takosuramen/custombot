@@ -29,6 +29,6 @@ async def custom(ctx):
     # bot_text_channnel = client.get_channel(BOT_COMMAND_CHANNEL_ID) ctxで渡されてるかもしれない
     user_name = [member.name for member in contents.author.voice.channel.members] # コマンドを打ち込んだ人がいるVCに接続しているメンバーの名前を取得
     user_ID = [member.id for member in contents.author.voice.channel.members.id] # Get the ID of the member currently connected to voice chat
-
+    await ctx.send("kanryou")
 token = getenv('DISCORD_BOT_TOKEN')
 bot.run(token)
