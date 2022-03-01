@@ -1,6 +1,15 @@
 from discord.ext import commands
 from os import getenv
 import traceback
+import random
+
+Intents = discord.Intents.default()
+Intents.members = True
+client = discord.Client(intents=Intents)
+
+BOT_COMMAND_CHANNEL_ID = 892796029362139170
+red_team_ID = 948050118031077376
+blue_team_ID = 948050118572138536
 
 bot = commands.Bot(command_prefix='/')
 
@@ -15,7 +24,11 @@ async def on_command_error(ctx, error):
 @bot.command()
 async def ping(ctx):
     await ctx.send('pong')
-
+    
+async def custom(ctx):
+    # bot_text_channnel = client.get_channel(BOT_COMMAND_CHANNEL_ID) ctxで渡されてるかもしれない
+    user_name = [member.name for member in contents.author.voice.channel.members] # コマンドを打ち込んだ人がいるVCに接続しているメンバーの名前を取得
+    user_ID = [member.id for member in contents.author.voice.channel.members.id] # Get the ID of the member currently connected to voice chat
 
 token = getenv('DISCORD_BOT_TOKEN')
 bot.run(token)
