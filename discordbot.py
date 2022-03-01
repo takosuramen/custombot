@@ -34,7 +34,7 @@ async def lol(ctx):
 @bot.command()
 async def custom(ctx):
     user_name = [member.name for member in ctx.author.voice.channel.members]  # コマンドを打ち込んだ人がいるVCに接続しているメンバーの名前を取得
-    user_ID = [member.id for member in ctx.author.voice.channel.members.id]
+    user_ID = [member.id for member in ctx.author.voice.channel.members]
     random.shuffle(user_name)
     await ctx.send(user_name)
     await ctx.send(user_ID)
