@@ -26,6 +26,10 @@ async def ping(ctx):
     await ctx.send('pong')
 
 
+async def lol(ctx):
+    await ctx.send('lololo')
+
+
 async def custom(ctx):
     # bot_text_channnel = client.get_channel(BOT_COMMAND_CHANNEL_ID) ctxで渡されてるかもしれない
     user_name = [member.name for member in ctx.author.voice.channel.members]  # コマンドを打ち込んだ人がいるVCに接続しているメンバーの名前を取得
