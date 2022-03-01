@@ -21,10 +21,6 @@ async def on_command_error(ctx, error):
     await ctx.send(error_msg)
 
 
-async def on_ready():
-    await ctx.send('kanryo-')
-
-
 @bot.command()
 async def ping(ctx):
     await ctx.send('pong')
