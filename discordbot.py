@@ -22,7 +22,7 @@ async def on_command_error(ctx, error):
 
 
 async def on_ready():
-    print('We have logged in as {0}'.format(bot.user))
+    await ctx.send('kanryo-')
 
 
 @bot.command()
