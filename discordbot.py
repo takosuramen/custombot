@@ -30,7 +30,7 @@ async def custom(ctx):
     # bot_text_channnel = client.get_channel(BOT_COMMAND_CHANNEL_ID) ctxで渡されてるかもしれない
     user_name = [member.name for member in ctx.author.voice.channel.members]  # コマンドを打ち込んだ人がいるVCに接続しているメンバーの名前を取得
     user_ID = [member.id for member in ctx.author.voice.channel.members.id]  # Get the ID of the member currently connected to voice chat
-    random.shuffle(use_name)
+    random.shuffle(user_name)
     await ctx.send(user_name)
     await ctx.send(user_ID)
 token = getenv('DISCORD_BOT_TOKEN')
