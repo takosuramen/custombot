@@ -20,7 +20,7 @@ async def on_command_error(ctx, error):
     error_msg = ''.join(traceback.TracebackException.from_exception(orig_error).format())
     await ctx.send(error_msg)
 
-    
+
 async def on_ready():
     print('We have logged in as {0}'.format(bot.user))
 
@@ -29,7 +29,7 @@ async def on_ready():
 async def ping(ctx):
     await ctx.send('pong')
 
-    
+
 async def custom(ctx):
     # bot_text_channnel = client.get_channel(BOT_COMMAND_CHANNEL_ID) ctxで渡されてるかもしれない
     user_name = [member.name for member in ctx.author.voice.channel.members]  # コマンドを打ち込んだ人がいるVCに接続しているメンバーの名前を取得
