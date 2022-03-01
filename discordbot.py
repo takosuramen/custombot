@@ -8,9 +8,11 @@ import random
 discord.Intents.members = True
 bot = commands.Bot(command_prefix="/", intents=discord.Intents.all())
 
+
 BOT_COMMAND_CHANNEL_ID = 892796029362139170
 red_team_ID = 948050118031077376
 blue_team_ID = 948050118572138536
+
 
 @bot.event
 async def on_command_error(ctx, error):
@@ -18,6 +20,7 @@ async def on_command_error(ctx, error):
     error_msg = ''.join(traceback.TracebackException.from_exception(orig_error).format())
     await ctx.send(error_msg)
 
+    
 async def on_ready():
     print('We have logged in as {0}'.format(bot.user))
 
@@ -26,6 +29,7 @@ async def on_ready():
 async def ping(ctx):
     await ctx.send('pong')
 
+    
 async def custom(ctx):
     # bot_text_channnel = client.get_channel(BOT_COMMAND_CHANNEL_ID) ctxで渡されてるかもしれない
     user_name = [member.name for member in ctx.author.voice.channel.members]  # コマンドを打ち込んだ人がいるVCに接続しているメンバーの名前を取得
@@ -33,5 +37,7 @@ async def custom(ctx):
     random.shuffle(user_name)
     await ctx.send(user_name)
     await ctx.send(user_ID)
+
+
 token = getenv('DISCORD_BOT_TOKEN')
 bot.run(token)
