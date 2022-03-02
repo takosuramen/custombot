@@ -38,7 +38,7 @@ async def custom(ctx):
     await ctx.send("VCに" + str(len(user_ID)) + "人接続しています")
     await ctx.send(user_ID)
     random.shuffle(user_ID)
-    await ctx.send(bot.get_user(user_ID))
+    await ctx.send(bot.get_user(ID) for ID in user_ID)
 
 
 token = getenv('DISCORD_BOT_TOKEN')
