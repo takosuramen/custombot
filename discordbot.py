@@ -35,9 +35,10 @@ async def lol(ctx):
 async def custom(ctx):
     user_name = [member.name for member in ctx.author.voice.channel.members]  # コマンドを打ち込んだ人がいるVCに接続しているメンバーの名前を取得
     user_ID = [member.id for member in ctx.author.voice.channel.members]
-    random.shuffle(user_name)
-    await ctx.send(user_name)
+    await ctx.send("VCに" + user_ID.length + "人接続しています")
     await ctx.send(user_ID)
+    random.shuffle(user_ID)
+    await ctx.send(client.get_user(user_ID))
 
 
 token = getenv('DISCORD_BOT_TOKEN')
