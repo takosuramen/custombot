@@ -20,10 +20,13 @@ async def on_command_error(ctx, error):
     error_msg = ''.join(traceback.TracebackException.from_exception(orig_error).format())
     await ctx.send(error_msg)
 
+@bot.event
+async def on_ready():  # BOT起動時にメッセージを送る
+    await ctx.send("準備完了！")
 
 @bot.command()
-async def ping(ctx):
-    await ctx.send('pong')
+async def ping(ctx):  # BOTが稼働してるかどうか確認用
+    await ctx.send('HELLO!')
 
 
 @bot.command()
@@ -32,14 +35,16 @@ async def lol(ctx):
 
 
 @bot.command()
-async def custom(ctx):
+async def custom(ctx):  # カスタムチーム分けBOT
     user_name = [member.name for member in ctx.author.voice.channel.members]  # コマンドを打ち込んだ人がいるVCに接続しているメンバーの名前を取得
-    user_ID = [member.id for member in ctx.author.voice.channel.members]
+    user_ID = [member.id for member in ctx.author.voice.channel.members]      # 同IDを取得
     await ctx.send("VCに" + str(len(user_ID)) + "人接続しています")
     await ctx.send(*user_ID)
     random.shuffle(user_ID)
-    await ctx.send(*[bot.get_user(ID).name for ID in user_ID])
+    await ctx.send(*[bot.get_user(ID).display_name for ID in user_ID])        # ユーザーネームはサーバーごとに変えれるのでそのサーバーでの名前display_nameを表示
+    
+    await edit(redteam,red_team_ID)
+    await edit(blueteam,blue_team_ID)
 
-
-token = getenv('DISCORD_BOT_TOKEN')
+token = getenv('DISCORD_BOT_TOKEN')  # HEROKUの環境設定のほうに書いてあるtokenを取得
 bot.run(token)
