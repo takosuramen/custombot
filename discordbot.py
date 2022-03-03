@@ -25,7 +25,7 @@ async def on_command_error(ctx, error):
 async def on_ready():  # BOT起動時にメッセージを送る
     await bot.change_presence(activity=discord.Game(name="on ready"))
     chan = bot.get_channel(BOT_COMMAND_CHANNEL_ID)
-    await chan.send("準備完了!$bothelpでコマンドを確認できるよ")
+    await chan.send("準備完了! $bothelp でコマンドを確認できるよ")
 
 
 @bot.command()
@@ -42,11 +42,14 @@ async def bothelp(ctx):
 @bot.command()
 async def custom(ctx):
     """カスタムチーム分けBOT"""
+    if ctx.author.voice.channel is None
+        await ctx.send("あなたVCにいませんね")
+        return
     #  user_name = [member.name for member in ctx.author.voice.channel.members]  # コマンドを打ち込んだ人がいるVCに接続しているメンバーの名前を取得
     user_ID = [member.id for member in ctx.author.voice.channel.members]      # 同IDを取得
     await ctx.send("VCに" + str(len(user_ID)) + "人接続しています")
     if len(user_ID) != 10:
-        ctx.send('VCの人数が10人じゃないとチーム分けできません')
+        await ctx.send('VCの人数が10人じゃないとチーム分けできません')
         return
     random.shuffle(user_ID)
     await ctx.send(*[bot.get_user(ID).display_name for ID in user_ID])        # ユーザーネームはサーバーごとに変えれるのでそのサーバーでの名前display_nameを表示
