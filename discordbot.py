@@ -61,7 +61,7 @@ async def custom(ctx):
         blueteam.append(member.id[2*i])
         redteam.append(member.id[2*i+1])
     
-    for i in range(5)
+    for i in range(5):
         bluemem = bot.get_user(blueteam[i])
         redmem = bot.get_user(redteam[i])
         bluemem.move_to(blue_team_ID)
