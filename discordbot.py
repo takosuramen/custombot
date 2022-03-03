@@ -1,4 +1,3 @@
-from discord import ext
 from discord.ext import commands
 import discord
 from os import getenv
@@ -25,6 +24,7 @@ async def on_command_error(ctx, error):
 @bot.event
 async def on_ready():  # BOT起動時にメッセージを送る
     await bot.change_presence(activity=discord.Game(name="on ready"))
+    await BOT_COMMAND_CHANNEL_ID.send("junbikanryo")
 
 
 @bot.command()
