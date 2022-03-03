@@ -20,12 +20,12 @@ async def on_command_error(ctx, error):
     error_msg = ''.join(traceback.TracebackException.from_exception(orig_error).format())
     await ctx.send(error_msg)
 
-    
+
 @bot.event
 async def on_ready():  # BOT起動時にメッセージを送る
     await ctx.send("準備完了！")
 
-    
+
 @bot.command()
 async def ping(ctx):  # BOTが稼働してるかどうか確認用
     await ctx.send('HELLO!')
@@ -44,14 +44,14 @@ async def custom(ctx):  # カスタムチーム分けBOT
     await ctx.send(*user_ID)
     random.shuffle(user_ID)
     await ctx.send(*[bot.get_user(ID).display_name for ID in user_ID])        # ユーザーネームはサーバーごとに変えれるのでそのサーバーでの名前display_nameを表示
-    
+
     if len(user_ID) == 10:
         red_team_ID = user_ID[1:6]
         blue_team_ID = user_ID[6:]
-        
+
     else:
         await ctx.send("owari")
-        
-        
+
+       
 token = getenv('DISCORD_BOT_TOKEN')  # HEROKUの環境設定のほうに書いてあるtokenを取得
 bot.run(token)
