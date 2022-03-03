@@ -36,7 +36,7 @@ async def ping(ctx):
 
 @bot.command()
 async def nanka(ctx):
-    await ctx.send('')
+    await ctx.send('$ping\n    BOTが稼働してたらHELLOと返事を返すよ\n$custom\n    カスタム待機部屋にいる人を自動的にRED,BLUEにわけるよ')
 
 
 @bot.command()
