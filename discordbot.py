@@ -29,7 +29,8 @@ async def on_ready():  # BOT起動時にメッセージを送る
 
 
 @bot.command()
-async def ping(ctx):  """BOTが稼働してるかどうか確認"""
+async def ping(ctx):
+    """BOTが稼働してるかどうか確認"""
     await ctx.send('HELLO!')
 
 
@@ -39,7 +40,8 @@ async def nanka(ctx):
 
 
 @bot.command()
-async def custom(ctx):  """カスタムチーム分けBOT"""
+async def custom(ctx):
+    """カスタムチーム分けBOT"""
     #  user_name = [member.name for member in ctx.author.voice.channel.members]  # コマンドを打ち込んだ人がいるVCに接続しているメンバーの名前を取得
     user_ID = [member.id for member in ctx.author.voice.channel.members]      # 同IDを取得
     await ctx.send("VCに" + str(len(user_ID)) + "人接続しています")
