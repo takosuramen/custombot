@@ -24,7 +24,7 @@ async def on_command_error(ctx, error):
 
 @bot.event
 async def on_ready():  # BOT起動時にメッセージを送る
-    print "準備完了！"
+    print ("準備完了！")
 
 
 @bot.command()
