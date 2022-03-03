@@ -42,15 +42,24 @@ async def bothelp(ctx):
 @bot.command()
 async def custom(ctx):
     """カスタムチーム分けBOT"""
-    if ctx.author.voice.channel is None
+    
+    if ctx.author.voice.channel is None:
         await ctx.send("あなたVCにいませんね")
         return
-    #  user_name = [member.name for member in ctx.author.voice.channel.members]  # コマンドを打ち込んだ人がいるVCに接続しているメンバーの名前を取得
-    user_ID = [member.id for member in ctx.author.voice.channel.members]      # 同IDを取得
-    await ctx.send("VCに" + str(len(user_ID)) + "人接続しています")
     if len(user_ID) != 10:
         await ctx.send('VCの人数が10人じゃないとチーム分けできません')
         return
+    
+    await ctx.send("VCに" + str(len(user_ID)) + "人接続しています")
+    
+    #  user_name = [member.name for member in ctx.author.voice.channel.members]  # コマンドを打ち込んだ人がいるVCに接続しているメンバーの名前を取得
+    user_ID = [member.id for member in ctx.author.voice.channel.members]      # 同IDを取得
+    
+    for i in range(5):
+        blueteam.append(member.id[2*i])
+        redteam.append(member.id[2*i+1])
+
+    
     random.shuffle(user_ID)
     await ctx.send(*[bot.get_user(ID).display_name for ID in user_ID])        # ユーザーネームはサーバーごとに変えれるのでそのサーバーでの名前display_nameを表示
     
