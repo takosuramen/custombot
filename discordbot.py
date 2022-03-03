@@ -25,7 +25,7 @@ async def on_command_error(ctx, error):
 async def on_ready():  # BOT起動時にメッセージを送る
     await bot.change_presence(activity=discord.Game(name="on ready"))
     chan = bot.get_channel(BOT_COMMAND_CHANNEL_ID)
-    await chan.send("準備完了!$helpでコマンド確認してね")
+    await chan.send("準備完了!$bothelpでコマンドを確認できるよ")
 
 
 @bot.command()
@@ -35,7 +35,7 @@ async def ping(ctx):
 
 
 @bot.command()
-async def nanka(ctx):
+async def bothelp(ctx):
     await ctx.send('$ping\n    BOTが稼働してたらHELLOと返事を返すよ\n$custom\n    カスタム待機部屋にいる人を自動的にRED,BLUEにわけるよ')
 
 
@@ -45,8 +45,12 @@ async def custom(ctx):
     #  user_name = [member.name for member in ctx.author.voice.channel.members]  # コマンドを打ち込んだ人がいるVCに接続しているメンバーの名前を取得
     user_ID = [member.id for member in ctx.author.voice.channel.members]      # 同IDを取得
     await ctx.send("VCに" + str(len(user_ID)) + "人接続しています")
+    if len(user_ID) != 10
+        ctx.send('VCの人数が10人じゃないとチーム分けできません')
+        return
     random.shuffle(user_ID)
     await ctx.send(*[bot.get_user(ID).display_name for ID in user_ID])        # ユーザーネームはサーバーごとに変えれるのでそのサーバーでの名前display_nameを表示
+    
 
 
 token = getenv('DISCORD_BOT_TOKEN')  # HEROKUの環境設定のほうに書いてあるtokenを取得
