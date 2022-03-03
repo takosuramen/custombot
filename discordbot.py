@@ -24,7 +24,7 @@ async def on_command_error(ctx, error):
 
 @bot.event
 async def on_ready():  # BOT起動時にメッセージを送る
-    print ("準備完了！")
+    print("onready")
 
 
 @bot.command()
@@ -47,6 +47,5 @@ async def custom(ctx):  # カスタムチーム分けBOT
     await ctx.send(*[bot.get_user(ID).display_name for ID in user_ID])        # ユーザーネームはサーバーごとに変えれるのでそのサーバーでの名前display_nameを表示
 
 
-       
 token = getenv('DISCORD_BOT_TOKEN')  # HEROKUの環境設定のほうに書いてあるtokenを取得
 bot.run(token)
