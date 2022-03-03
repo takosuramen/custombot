@@ -24,7 +24,7 @@ async def on_command_error(ctx, error):
 
 @bot.event
 async def on_ready():  # BOT起動時にメッセージを送る
-    print("onready")
+    await bot.change_presence(activity=discord.Game(name="on ready"))
 
 
 @bot.command()
