@@ -10,6 +10,7 @@ bot = commands.Bot(command_prefix='$', intents=discord.Intents.all())
 
 
 BOT_COMMAND_CHANNEL_ID = 892796029362139170
+taikibeya_ID = 892796029362139172
 red_team_ID = 948050118031077376
 blue_team_ID = 948050118572138536
 
@@ -42,20 +43,13 @@ async def bothelp(ctx):
 @bot.command()
 async def custom(ctx):
     """カスタムチーム分けBOT"""
-    
-    if ctx.author.voice.channel is None:  # コマンドを打った人がVCにいるか確認
-        await ctx.send("あなたVCにいませんね")
-        return
-    
-    #  user_name = [member.name for member in ctx.author.voice.channel.members]  # コマンドを打ち込んだ人がいるVCに接続しているメンバーの名前を取得
-    user_ID = [member.id for member in ctx.author.voice.channel.members]      # 同IDを取得
+    taikibeya = bot.get_channel(taikibeya_ID)
+    #  user_name = [member.name for member in taikibeya.members]  # カスタム待機部屋に接続しているメンバーの名前を取得
+    user_ID = [member.id for member in taikibeya.members]         # 同IDを取得
     await ctx.send("VCに" + str(len(user_ID)) + "人接続しています")
     if len(user_ID) != 10:  # VCの人数が10人か確認
         await ctx.send('VCの人数が10人じゃないとチーム分けできません')
         return
-    
-    
-    
     
     for i in range(5):
         blueteam.append(member.id[2*i])
