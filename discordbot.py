@@ -29,17 +29,17 @@ async def on_ready():  # BOT起動時にメッセージを送る
 
 
 @bot.command()
-async def ping(ctx):  # BOTが稼働してるかどうか確認用
+async def ping(ctx):  """BOTが稼働してるかどうか確認"""
     await ctx.send('HELLO!')
 
 
 @bot.command()
-async def help(ctx):
-    await ctx.send('$ping\n    botが稼働してたらHELLOと返すよ\n$custom\n    カスタム待機部屋にいる人をランダムにREDBLUEにわけるよ')
+async def nanka(ctx):
+    await ctx.send('')
 
 
 @bot.command()
-async def custom(ctx):  # カスタムチーム分けBOT
+async def custom(ctx):  """カスタムチーム分けBOT"""
     #  user_name = [member.name for member in ctx.author.voice.channel.members]  # コマンドを打ち込んだ人がいるVCに接続しているメンバーの名前を取得
     user_ID = [member.id for member in ctx.author.voice.channel.members]      # 同IDを取得
     await ctx.send("VCに" + str(len(user_ID)) + "人接続しています")
