@@ -48,7 +48,7 @@ async def custom(ctx):  # カスタムチーム分けBOT
         blue_team_ID = user_ID[6:]
         await bot.edit(redteam,red_team_ID)
         await bot.edit(blueteam,blue_team_ID)
-    else
+    else:
         await bot.edit(redteam,user_ID)
 
 token = getenv('DISCORD_BOT_TOKEN')  # HEROKUの環境設定のほうに書いてあるtokenを取得
