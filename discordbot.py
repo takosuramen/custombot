@@ -9,7 +9,6 @@ discord.Intents.members = True
 bot = commands.Bot(command_prefix='/', intents=discord.Intents.all())
 adm = bot.users.fetch(946239148119961612)
 
-
 BOT_COMMAND_CHANNEL_ID = 892796029362139170
 red_team_ID = 948050118031077376
 blue_team_ID = 948050118572138536
