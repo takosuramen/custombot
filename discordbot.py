@@ -6,7 +6,7 @@ import random
 
 
 discord.Intents.members = True
-bot = commands.Bot(command_prefix='/', intents=discord.Intents.all())
+bot = commands.Bot(command_prefix='$', intents=discord.Intents.all())
 
 
 BOT_COMMAND_CHANNEL_ID = 892796029362139170
@@ -25,7 +25,7 @@ async def on_command_error(ctx, error):
 async def on_ready():  # BOT起動時にメッセージを送る
     await bot.change_presence(activity=discord.Game(name="on ready"))
     chan = bot.get_channel(BOT_COMMAND_CHANNEL_ID)
-    await chan.send("ready")
+    await chan.send("準備完了!$helpでコマンド確認してね")
 
 
 @bot.command()
@@ -34,16 +34,16 @@ async def ping(ctx):  # BOTが稼働してるかどうか確認用
 
 
 @bot.command()
-async def lol(ctx):
-    await ctx.send('lololo')
+async def help(ctx):
+    await ctx.send('$ping/n    botが稼働してたらHELLOと返すよ/n$custom/n    カスタム待機部屋にいる人をランダムにREDBLUE
+                   にわけるよ')
 
 
 @bot.command()
 async def custom(ctx):  # カスタムチーム分けBOT
-    user_name = [member.name for member in ctx.author.voice.channel.members]  # コマンドを打ち込んだ人がいるVCに接続しているメンバーの名前を取得
+    #  user_name = [member.name for member in ctx.author.voice.channel.members]  # コマンドを打ち込んだ人がいるVCに接続しているメンバーの名前を取得
     user_ID = [member.id for member in ctx.author.voice.channel.members]      # 同IDを取得
     await ctx.send("VCに" + str(len(user_ID)) + "人接続しています")
-    await ctx.send(*user_ID)
     random.shuffle(user_ID)
     await ctx.send(*[bot.get_user(ID).display_name for ID in user_ID])        # ユーザーネームはサーバーごとに変えれるのでそのサーバーでの名前display_nameを表示
 
