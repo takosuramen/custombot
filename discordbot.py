@@ -51,6 +51,8 @@ async def custom(ctx):
         await ctx.send('VCの人数が10人じゃないとチーム分けできません')
         return
     
+    blueteam = []
+    redteam = []
     for i in range(5):
         blueteam.append(member.id[2*i])
         redteam.append(member.id[2*i+1])
