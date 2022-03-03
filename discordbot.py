@@ -53,7 +53,7 @@ async def custom(ctx):  # カスタムチーム分けBOT
         #  await adm.edit(blueteam,blue_team_ID)
     else:
         #  await adm.edit(redteam,user_ID)
-
+        
         
 token = getenv('DISCORD_BOT_TOKEN')  # HEROKUの環境設定のほうに書いてあるtokenを取得
 bot.run(token)
