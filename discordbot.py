@@ -49,11 +49,12 @@ async def custom(ctx):
     
     #  user_name = [member.name for member in ctx.author.voice.channel.members]  # コマンドを打ち込んだ人がいるVCに接続しているメンバーの名前を取得
     user_ID = [member.id for member in ctx.author.voice.channel.members]      # 同IDを取得
+    await ctx.send("VCに" + str(len(user_ID)) + "人接続しています")
     if len(user_ID) != 10:  # VCの人数が10人か確認
         await ctx.send('VCの人数が10人じゃないとチーム分けできません')
         return
     
-    await ctx.send("VCに" + str(len(user_ID)) + "人接続しています")
+    
     
     
     for i in range(5):
