@@ -36,7 +36,7 @@ async def ping(ctx):
 
 @bot.command()
 async def bothelp(ctx):
-    await ctx.send('$ping\n    BOTが稼働してたらHELLOと返事を返すよ\n$custom\n    カスタム待機部屋にいる人を自動的にRED,BLUEにわけるよ')
+    await ctx.send('$ping\n    BOTが稼働してたらHELLOと返事を返すよ\n$custom\n    カスタム待機部屋にいる人を自動的にRED,BLUEにわけるよ\n    コマンドを打つ人がVCにいてVCの人数が10人じゃないといけないよ')
 
 
 @bot.command()
@@ -45,7 +45,7 @@ async def custom(ctx):
     #  user_name = [member.name for member in ctx.author.voice.channel.members]  # コマンドを打ち込んだ人がいるVCに接続しているメンバーの名前を取得
     user_ID = [member.id for member in ctx.author.voice.channel.members]      # 同IDを取得
     await ctx.send("VCに" + str(len(user_ID)) + "人接続しています")
-    if len(user_ID) != 10
+    if len(user_ID) != 10:
         ctx.send('VCの人数が10人じゃないとチーム分けできません')
         return
     random.shuffle(user_ID)
