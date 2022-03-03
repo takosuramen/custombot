@@ -43,8 +43,13 @@ async def custom(ctx):  # カスタムチーム分けBOT
     random.shuffle(user_ID)
     await ctx.send(*[bot.get_user(ID).display_name for ID in user_ID])        # ユーザーネームはサーバーごとに変えれるのでそのサーバーでの名前display_nameを表示
     
-    await edit(redteam,red_team_ID)
-    await edit(blueteam,blue_team_ID)
+    if len(user_ID) == 10:
+        red_team_ID = user_ID[1:6]
+        blue_team_ID = user_ID[6:]
+        await bot.edit(redteam,red_team_ID)
+        await bot.edit(blueteam,blue_team_ID)
+    else
+        await bot.edit(redteam,user_ID)
 
 token = getenv('DISCORD_BOT_TOKEN')  # HEROKUの環境設定のほうに書いてあるtokenを取得
 bot.run(token)
