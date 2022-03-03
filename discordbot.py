@@ -34,7 +34,7 @@ async def ping(ctx):  # BOTが稼働してるかどうか確認用
 
 
 @bot.command()
-async def help(ctx):
+async def com(ctx):
     await ctx.send('ping/n    botが稼働してたらHELLOと返すよ/ncustom/n    カスタム待機部屋にいる人をランダムにREDBLUEにわけるよ')
 
 
