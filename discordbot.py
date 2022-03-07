@@ -56,17 +56,15 @@ async def custom(ctx):
     
     blueteam.append(user_ID[1:10:2])
     redteam.append(user_ID[2:11:2])
-    
+
     for i in range(5):
         bluemem = bot.get_user(blueteam[i])
         redmem = bot.get_user(redteam[i])
         bluemem.move_to(blue_team_ID)
         redmem.move_to(red_team_ID)
-    
+
     random.shuffle(user_ID)
     await ctx.send(*[bot.get_user(ID).display_name for ID in user_ID])        # ユーザーネームはサーバーごとに変えれるのでそのサーバーでの名前display_nameを表示
-    
-
 
 token = getenv('DISCORD_BOT_TOKEN')  # HEROKUの環境設定のほうに書いてあるtokenを取得
 bot.run(token)
