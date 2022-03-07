@@ -44,8 +44,9 @@ async def help(ctx):
 async def blue(ctx):
     blue = []
     blue.append(ctx.author.id)
+    blmem = None
     blmem.get_user(blue[0])
-    blmem.move_to(blyue_team_ID)
+    blmem.move_to(blue_team_ID)
 
 @bot.command()
 async def custom(ctx):
