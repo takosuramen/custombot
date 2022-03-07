@@ -6,7 +6,7 @@ import random
 
 
 discord.Intents.members = True
-bot = commands.Bot(command_prefix='$', intents=discord.Intents.all())
+bot = commands.Bot(command_prefix='$', intents=discord.Intents.all(),help_command=None)
 
 
 BOT_COMMAND_CHANNEL_ID = 892796029362139170
@@ -26,7 +26,7 @@ async def on_command_error(ctx, error):
 async def on_ready():  # BOT起動時にメッセージを送る
     await bot.change_presence(activity=discord.Game(name="on ready"))
     chan = bot.get_channel(BOT_COMMAND_CHANNEL_ID)
-    await chan.send("準備完了! $bothelp でコマンドを確認できるよ")
+    await chan.send("準備完了! $help でコマンドを確認できるよ")
 
 
 @bot.command()
@@ -36,7 +36,7 @@ async def ping(ctx):
 
 
 @bot.command()
-async def bothelp(ctx):
+async def help(ctx):
     await ctx.send('$ping\n    BOTが稼働してたらHELLOと返事を返すよ\n$custom\n    カスタム待機部屋にいる人を自動的にRED,BLUEにわけるよ\n    コマンドを打つ人がVCにいてVCの人数が10人じゃないといけないよ')
 
 
