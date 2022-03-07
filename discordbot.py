@@ -4,7 +4,6 @@ from os import getenv
 import traceback
 import random
 
-
 # discord.Intents.members = True  # これをしないとget_memberとかできなくなる
 bot = commands.Bot(command_prefix='$', intents=Intents.discord.all(), help_command=None)
 
