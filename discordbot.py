@@ -5,7 +5,7 @@ import traceback
 import random
 
 
-discord.Intents.members = True  # これをしないとget_memberとかできなくなる
+# discord.Intents.members = True  # これをしないとget_memberとかできなくなる
 bot = commands.Bot(command_prefix='$', intents=Intents.discord.all(), help_command=None)
 
 guild_ID = 892796029362139166
