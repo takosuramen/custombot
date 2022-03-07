@@ -43,14 +43,14 @@ async def help(ctx):
 
 @bot.command()
 async def blue(ctx):
-    if message.author.voice is None:
+    if ctx.author.voice is None:
         await ctx.send("VCに接続していませんね")
         return
     guild = ctx.guild
     blue = []
     blue.append(ctx.author.id)
     blmem = await guild.fetch_member(blue[0])
-    await blmem.move_to(blue_team,None)
+    await blmem.move_to(blue_team)
 
 
 @bot.command()
