@@ -41,7 +41,6 @@ async def help(ctx):
 
 @bot.command()
 async def blue(ctx):
-    red_team = bot.get_channel(red_team_ID)
     blue_team = bot.get_channel(blue_team_ID)
     if ctx.author.voice is None:
         await ctx.send("VCに接続していませんね")
@@ -54,11 +53,11 @@ async def blue(ctx):
 
 
 @bot.command()
-async def custom(ctx):
-    """カスタムチーム分けBOT"""
+async def custom(ctx):  # カスタムチーム分けbot 10人を赤チーム青チーム5人ずつランダムに分ける
     red_team = bot.get_channel(red_team_ID)
     blue_team = bot.get_channel(blue_team_ID)
     taikibeya = bot.get_channel(taikibeya_ID)
+    guild = ctx.guild
     #  user_name = [member.name for member in taikibeya.members]  # カスタム待機部屋に接続しているメンバーの名前を取得
     user_ID = [member.id for member in taikibeya.members]         # 同IDを取得
     await ctx.send("VCに" + str(len(user_ID)) + "人接続しています")
@@ -68,18 +67,19 @@ async def custom(ctx):
 
     blueteam = []
     redteam = []
-
-    blueteam.append(user_ID[1:10:2])
-    redteam.append(user_ID[2:11:2])
+    random.shuffle(user_ID)
+    blueteam.append(user_ID[1:6])  # シャッフルしたuser_IDの1~5番目をblueteamに6~10番目をredteamに追加
+    redteam.append(user_ID[6:11])
 
     for i in range(5):
-        bluemem = bot.get_user(blueteam[i])
-        redmem = bot.get_user(redteam[i])
-        bluemem.move_to(blue_team)
-        redmem.move_to(red_team)
+        bluemem = await guild.fetch_member(blueteam[i])
+        redmem = await guild.fetch_member(redteam[i])
+        await bluemem.move_to(blue_team)
+        await redmem.move_to(red_team)
 
-    random.shuffle(user_ID)
-    await ctx.send(*[bot.get_user(ID).display_name for ID in user_ID])        # ユーザーネームはサーバーごとに変えれるのでそのサーバーでの名前display_nameを表示
+    for i in range(5)
+        await ctx.send(-----赤チーム-----/n
+    # ユーザーネームはサーバーごとに変えれるのでそのサーバーでの名前display_nameを表示
 
 token = getenv('DISCORD_BOT_TOKEN')  # HEROKUの環境設定のほうに書いてあるtokenを取得
 bot.run(token)
