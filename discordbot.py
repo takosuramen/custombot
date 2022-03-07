@@ -6,7 +6,7 @@ import random
 
 
 discord.Intents.members = True
-bot = commands.Bot(command_prefix='$', intents=discord.Intents.all(),help_command=None)
+bot = commands.Bot(command_prefix='$', intents=discord.Intents.all(), help_command=None)
 
 
 BOT_COMMAND_CHANNEL_ID = 892796029362139170
@@ -54,8 +54,8 @@ async def custom(ctx):
     blueteam = []
     redteam = []
     for i in range(5):
-        blueteam.append(member.id[2*i])
-        redteam.append(member.id[2*i+1])
+        blueteam.append(user_ID[2*i])
+        redteam.append(user_ID[2*i+1])
     
     for i in range(5):
         bluemem = bot.get_user(blueteam[i])
