@@ -77,7 +77,7 @@ async def custom(ctx):  # カスタムチーム分けbot 10人を赤チーム青
         await bluemem.move_to(blue_team)
         await redmem.move_to(red_team)
 
-    await ctx.send(-----赤チーム-----)
+    await ctx.send("-----赤チーム-----")
     # await ctx.send(*[bot.get_user(ID).display_name for ID in user_ID])
     # ユーザーネームはサーバーごとに変えれるのでそのサーバーでの名前display_nameを表示
 
