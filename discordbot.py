@@ -8,9 +8,6 @@ intents = discord.Intents.default()
 intents.members = True  # これをしないとget_memberとかできなくなる
 bot = commands.Bot(command_prefix='$', intents=intents, help_command=None)
 
-guild_ID = 892796029362139166
-guild = bot.get_guild(guild_ID)
-
 BOT_COMMAND_CHANNEL_ID = 892796029362139170
 taikibeya_ID = 892796029362139172
 red_team_ID = 948050118031077376
@@ -44,7 +41,7 @@ async def help(ctx):
 
 @bot.command()
 async def blue(ctx):
-    await ctx.send(guild.name)
+    guild = ctx.guilds
     blue = []
     blue.append(ctx.author.id)
     blmem = await guild.fetch_member(blue[0])
