@@ -50,12 +50,12 @@ async def custom(ctx):
     if len(user_ID) != 10:  # VCの人数が10人か確認
         await ctx.send('VCの人数が10人じゃないとチーム分けできません')
         return
-    
+
     blueteam = []
     redteam = []
-    for i in range(5):
-        blueteam.append(user_ID[2*i])
-        redteam.append(user_ID[2*i+1])
+    
+    blueteam.append(user_ID[1:10:2])
+    redteam.append(user_ID[2:11:2])
     
     for i in range(5):
         bluemem = bot.get_user(blueteam[i])
