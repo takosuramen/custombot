@@ -13,8 +13,6 @@ taikibeya_ID = 892796029362139172
 red_team_ID = 948050118031077376
 blue_team_ID = 948050118572138536
 
-red_team = bot.get_channel(red_team_ID)
-blue_team = bot.fetch_channel(blue_team_ID)
 
 @bot.event
 async def on_command_error(ctx, error):  # エラーはいたときに教えてくれるやつ
@@ -43,6 +41,8 @@ async def help(ctx):
 
 @bot.command()
 async def blue(ctx):
+    red_team = bot.get_channel(red_team_ID)
+    blue_team = bot.fetch_channel(blue_team_ID)
     if ctx.author.voice is None:
         await ctx.send("VCに接続していませんね")
         return
@@ -73,8 +73,8 @@ async def custom(ctx):
     for i in range(5):
         bluemem = bot.get_user(blueteam[i])
         redmem = bot.get_user(redteam[i])
-        bluemem.move_to(blue_team_ID)
-        redmem.move_to(red_team_ID)
+        bluemem.move_to(blue_team)
+        redmem.move_to(red_team)
 
     random.shuffle(user_ID)
     await ctx.send(*[bot.get_user(ID).display_name for ID in user_ID])        # ユーザーネームはサーバーごとに変えれるのでそのサーバーでの名前display_nameを表示
