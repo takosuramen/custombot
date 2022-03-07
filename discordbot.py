@@ -47,7 +47,7 @@ async def blue(ctx):
     blue = []
     blue.append(ctx.author.id)
     blmem = await guild.fetch_member(blue[0])
-    await blmem.move_to(blue_team)
+    await blmem.move_to(blue_team,None)
 
 
 @bot.command()
