@@ -53,7 +53,7 @@ async def custom(ctx):
 
     blueteam = []
     redteam = []
-    
+
     blueteam.append(user_ID[1:10:2])
     redteam.append(user_ID[2:11:2])
 
