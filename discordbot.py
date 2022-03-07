@@ -14,7 +14,7 @@ red_team_ID = 948050118031077376
 blue_team_ID = 948050118572138536
 
 red_team = bot.get_channel(red_team_ID)
-blue_team = bot.get_channel(blue_team_ID)
+blue_team = bot.fetch_channel(blue_team_ID)
 
 @bot.event
 async def on_command_error(ctx, error):  # エラーはいたときに教えてくれるやつ
