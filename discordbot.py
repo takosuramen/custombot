@@ -18,7 +18,7 @@ blue_team_ID = 948050118572138536
 
 
 @bot.event
-async def on_command_error(ctx, error):  #エラーはいたときに教えてくれるやつ
+async def on_command_error(ctx, error):  # エラーはいたときに教えてくれるやつ
     orig_error = getattr(error, "original", error)
     error_msg = ''.join(traceback.TracebackException.from_exception(orig_error).format())
     await ctx.send(error_msg)
