@@ -6,10 +6,12 @@ import random
 
 
 discord.Intents.members = True
-bot = commands.Bot(command_prefix='$', intents=discord.Intents.all(), help_command=None)
+intents = discord.Intents.default()
+intents.members = True  # これをしないとget_memberとかできなくなる
+bot = commands.Bot(command_prefix='$', intents=intents, help_command=None)
+
 guild_ID = 892796029362139166
 guild = bot.get_guild(guild_ID)
-
 
 BOT_COMMAND_CHANNEL_ID = 892796029362139170
 taikibeya_ID = 892796029362139172
