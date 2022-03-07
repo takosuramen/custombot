@@ -4,8 +4,9 @@ from os import getenv
 import traceback
 import random
 
-# discord.Intents.members = True  # これをしないとget_memberとかできなくなる
-bot = commands.Bot(command_prefix='$', intents=discord.Intents.all(), help_command=None)
+intents = discord.Intents.default()
+intents.members = True  # これをしないとget_memberとかできなくなる
+bot = commands.Bot(command_prefix='$', intents=intents, help_command=None)
 
 guild_ID = 892796029362139166
 guild = bot.get_guild(guild_ID)
@@ -17,7 +18,7 @@ blue_team_ID = 948050118572138536
 
 
 @bot.event
-async def on_command_error(ctx, error):
+async def on_command_error(ctx, error):  #エラーはいたときに教えてくれるやつ
     orig_error = getattr(error, "original", error)
     error_msg = ''.join(traceback.TracebackException.from_exception(orig_error).format())
     await ctx.send(error_msg)
@@ -47,6 +48,7 @@ async def blue(ctx):
     blue.append(ctx.author.id)
     blmem = guild.get_member(blue[0])
     blmem.move_to(blue_team_ID)
+
 
 @bot.command()
 async def custom(ctx):
