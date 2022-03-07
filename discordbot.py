@@ -42,7 +42,7 @@ async def help(ctx):
 @bot.command()
 async def blue(ctx):
     red_team = bot.get_channel(red_team_ID)
-    blue_team = bot.fetch_channel(blue_team_ID)
+    blue_team = bot.get_channel(blue_team_ID)
     if ctx.author.voice is None:
         await ctx.send("VCに接続していませんね")
         return
@@ -56,6 +56,8 @@ async def blue(ctx):
 @bot.command()
 async def custom(ctx):
     """カスタムチーム分けBOT"""
+    red_team = bot.get_channel(red_team_ID)
+    blue_team = bot.get_channel(blue_team_ID)
     taikibeya = bot.get_channel(taikibeya_ID)
     #  user_name = [member.name for member in taikibeya.members]  # カスタム待機部屋に接続しているメンバーの名前を取得
     user_ID = [member.id for member in taikibeya.members]         # 同IDを取得
