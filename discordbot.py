@@ -44,6 +44,7 @@ async def help(ctx):
 
 @bot.command()
 async def blue(ctx):
+    await ctx.send(guild.name)
     blue = []
     blue.append(ctx.author.id)
     blmem = await guild.fetch_member(blue[0])
