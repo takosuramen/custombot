@@ -41,6 +41,13 @@ async def help(ctx):
 
 
 @bot.command()
+async def blue(ctx):
+    blue = []
+    blue.append(ctx.author.id)
+    blmem.get_user(blue[0])
+    blmem.move_to(blyue_team_ID)
+
+@bot.command()
 async def custom(ctx):
     """カスタムチーム分けBOT"""
     taikibeya = bot.get_channel(taikibeya_ID)
