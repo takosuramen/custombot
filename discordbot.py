@@ -23,7 +23,7 @@ async def on_command_error(ctx, error):  # エラーはいたときに教えて�
 
 @bot.event
 async def on_ready():  # BOT起動時にメッセージを送る
-    await bot.change_presence(activity=discord.Game(name="on ready"))
+    await bot.change_presence(activity=discord.Game(name="準備おっけー"))
     chan = bot.get_channel(BOT_COMMAND_CHANNEL_ID)
     await chan.send("準備完了! $help でコマンドを確認できるよ")
 
@@ -42,7 +42,7 @@ async def help(ctx):
 @bot.command()
 async def blue(ctx):
     blue_team = bot.get_channel(blue_team_ID)
-    if ctx.author.voice is None:
+    if ctx.author.voice == None:
         await ctx.send("VCに接続していませんね")
         return
     guild = ctx.guild
@@ -77,7 +77,7 @@ async def custom(ctx):  # カスタムチーム分けbot 10人を赤チーム青
         await bluemem.move_to(blue_team)
         await redmem.move_to(red_team)
 
-    await ctx.send("-----赤チーム-----")
+    await ctx.send("-----赤チーム-----" + bot.get_user(red_team).display_name + "-----青チーム-----" + bot.get_user(red_team).display_name)
     # await ctx.send(*[bot.get_user(ID).display_name for ID in user_ID])
     # ユーザーネームはサーバーごとに変えれるのでそのサーバーでの名前display_nameを表示
 
