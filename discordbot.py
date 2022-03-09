@@ -42,7 +42,8 @@ async def help(ctx):
 @bot.command()
 async def blue(ctx):
     blue_team = bot.get_channel(blue_team_ID)
-    if ctx.author.voice == None:
+    voice = ctx.author.voice
+    if voice is None:
         await ctx.send("VCに接続していませんね")
         return
     guild = ctx.guild
