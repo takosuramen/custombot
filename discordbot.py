@@ -23,7 +23,7 @@ async def on_command_error(ctx, error):  # エラーはいたときに教えて�
 
 @bot.event
 async def on_ready():  # BOT起動時にメッセージを送る
-    await bot.change_presence(activity=discord.Game(name=time+'からかどうしてる'))
+    await bot.change_presence(activity=discord.Game(name='こんにちは'))
     # chan = bot.get_channel(BOT_COMMAND_CHANNEL_ID)
     # 再起動するたびにうるさいので一回消しとく await chan.send("準備完了! $help でコマンドを確認できるよ")
 
