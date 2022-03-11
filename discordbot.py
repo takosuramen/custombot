@@ -3,7 +3,7 @@ import discord
 from os import getenv
 import traceback
 import random
-from datetime import datetime, timedelta
+import datetime
 
 intents = discord.Intents.default()
 intents.members = True  # これをしないとget_memberとかできなくなる
