@@ -3,6 +3,8 @@ import discord
 from os import getenv
 import traceback
 import random
+import datetime
+import pytz
 
 intents = discord.Intents.default()
 intents.members = True  # これをしないとget_memberとかできなくなる
@@ -23,9 +25,10 @@ async def on_command_error(ctx, error):  # エラーはいたときに教えて�
 
 @bot.event
 async def on_ready():  # BOT起動時にメッセージを送る
-    await bot.change_presence(activity=discord.Game(name="準備おっけー"))
+    now = datetime.datetime.now(pytz.timezone('Asia/Tokyo'))
+    await bot.change_presence(activity=discord.Game(name=f'{now}からかどう'))
     chan = bot.get_channel(BOT_COMMAND_CHANNEL_ID)
-    await chan.send("準備完了! $help でコマンドを確認できるよ")
+    # 再起動するたびにうるさいので一回消しとく await chan.send("準備完了! $help でコマンドを確認できるよ")
 
 
 @bot.command()
@@ -40,7 +43,7 @@ async def help(ctx):
 
 
 @bot.command()
-async def blue(ctx):
+async def blue(ctx): # 発言者をblueチームに送るコマンド
     blue_team = bot.get_channel(blue_team_ID)
     voice = ctx.author.voice
     if voice is None:
@@ -59,7 +62,7 @@ async def custom(ctx):  # カスタムチーム分けbot 10人を赤チーム青
     blue_team = bot.get_channel(blue_team_ID)
     taikibeya = bot.get_channel(taikibeya_ID)
     guild = ctx.guild
-    #  user_name = [member.name for member in taikibeya.members]  # カスタム待機部屋に接続しているメンバーの名前を取得
+    #  user_name = [member.name for member in taikibeya.members]  # カスタム待機部屋に接続しているメンバーの名前を取得　IDだけでいいかも
     user_ID = [member.id for member in taikibeya.members]         # 同IDを取得
     await ctx.send("VCに" + str(len(user_ID)) + "人接続しています")
     if len(user_ID) != 10:  # VCの人数が10人か確認
@@ -69,7 +72,7 @@ async def custom(ctx):  # カスタムチーム分けbot 10人を赤チーム青
     blueteam = []
     redteam = []
     random.shuffle(user_ID)
-    blueteam.append(user_ID[1:6])  # シャッフルしたuser_IDの1~5番目をblueteamに6~10番目をredteamに追加
+    blueteam.append(user_ID[1:6])  # シャッフルしたuser_IDの1~5番目をblueteamに6~10番目をredteamに追加することでランダムに
     redteam.append(user_ID[6:11])
 
     for i in range(5):
@@ -78,7 +81,7 @@ async def custom(ctx):  # カスタムチーム分けbot 10人を赤チーム青
         await bluemem.move_to(blue_team)
         await redmem.move_to(red_team)
 
-    await ctx.send("-----赤チーム-----" + bot.get_user(red_team).display_name + "-----青チーム-----" + bot.get_user(red_team).display_name)
+    await ctx.send("-----赤チーム-----" + bot.get_user(*red_team).display_name + "-----青チーム-----" + bot.get_user(*blue_team).display_name)
     # await ctx.send(*[bot.get_user(ID).display_name for ID in user_ID])
     # ユーザーネームはサーバーごとに変えれるのでそのサーバーでの名前display_nameを表示
 
