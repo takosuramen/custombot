@@ -3,8 +3,7 @@ import discord
 from os import getenv
 import traceback
 import random
-import datetime
-import pytz
+from datetime import datetime, timedelta, timezone
 
 intents = discord.Intents.default()
 intents.members = True  # これをしないとget_memberとかできなくなる
@@ -25,7 +24,7 @@ async def on_command_error(ctx, error):  # エラーはいたときに教えて�
 
 @bot.event
 async def on_ready():  # BOT起動時にメッセージを送る
-    now = datetime.datetime.now(pytz.timezone('Asia/Tokyo'))
+    now = timezone(timedelta(hours=+9), 'JST')
     await bot.change_presence(activity=discord.Game(name=f'{now}からかどう'))
     # chan = bot.get_channel(BOT_COMMAND_CHANNEL_ID)
     # 再起動するたびにうるさいので一回消しとく await chan.send("準備完了! $help でコマンドを確認できるよ")
