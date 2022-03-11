@@ -3,7 +3,6 @@ import discord
 from os import getenv
 import traceback
 import random
-from datetime import datetime,timedelta,timezone
 
 intents = discord.Intents.default()
 intents.members = True  # これをしないとget_memberとかできなくなる
@@ -24,9 +23,6 @@ async def on_command_error(ctx, error):  # エラーはいたときに教えて�
 
 @bot.event
 async def on_ready():  # BOT起動時にメッセージを送る
-    tz = datetime.timezone(datetime.timedelta(hours=9))
-    time = datetime.datetime.now(tz)
-    # timee = time.strftime('%y%m%d%H%M%S')
     await bot.change_presence(activity=discord.Game(name=time+'からかどうしてる'))
     # chan = bot.get_channel(BOT_COMMAND_CHANNEL_ID)
     # 再起動するたびにうるさいので一回消しとく await chan.send("準備完了! $help でコマンドを確認できるよ")
