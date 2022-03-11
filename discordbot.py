@@ -27,7 +27,7 @@ async def on_ready():  # BOT起動時にメッセージを送る
     tz = datetime.timezone(datetime.timedelta(hours=9))
     time = datetime.datetime.now(tz)
     timee = time.strftime('%y%m%d%H%M%S')
-    await bot.change_presence(activity=discord.Game(name=f'{timee}からかどう'))
+    await bot.change_presence(activity=discord.Game(name=timee+'からかどうしてる'))
     # chan = bot.get_channel(BOT_COMMAND_CHANNEL_ID)
     # 再起動するたびにうるさいので一回消しとく await chan.send("準備完了! $help でコマンドを確認できるよ")
 
