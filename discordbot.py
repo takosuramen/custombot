@@ -27,7 +27,7 @@ async def on_command_error(ctx, error):  # エラーはいたときに教えて�
 async def on_ready():  # BOT起動時にメッセージを送る
     now = datetime.datetime.now(pytz.timezone('Asia/Tokyo'))
     await bot.change_presence(activity=discord.Game(name=f'{now}からかどう'))
-    chan = bot.get_channel(BOT_COMMAND_CHANNEL_ID)
+    # chan = bot.get_channel(BOT_COMMAND_CHANNEL_ID)
     # 再起動するたびにうるさいので一回消しとく await chan.send("準備完了! $help でコマンドを確認できるよ")
 
 
@@ -43,7 +43,7 @@ async def help(ctx):
 
 
 @bot.command()
-async def blue(ctx): # 発言者をblueチームに送るコマンド
+async def blue(ctx):  # 発言者をblueチームに送るコマンド
     blue_team = bot.get_channel(blue_team_ID)
     voice = ctx.author.voice
     if voice is None:
