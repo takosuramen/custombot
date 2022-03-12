@@ -4,7 +4,7 @@ from os import getenv
 import traceback
 import random
 import datetime
-from riotwatcher import RiotWatcher
+from riotwatcher import LolWatcher
 
 intents = discord.Intents.default()
 intents.members = True  # これをしないとget_memberとかできなくなる
@@ -91,7 +91,7 @@ async def custom(ctx):  # カスタムチーム分けbot 10人を赤チーム青
 
 @bot.command()
 async def lolinfo(ctx):
-    watcher = RiotWatcher(key)
+    watcher = LolWatcher(key)
     region = 'jp1'
     summonername = 'takosuramen'
     me = watcher.summoner.by_name(region, summonername)
