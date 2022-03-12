@@ -16,7 +16,6 @@ red_team_ID = 270573338752057355  # 948050118031077376
 blue_team_ID = 269884896258818049  # 948050118572138536
 
 key = getenv('riotkey')
-watcher = RiotWatcher(key)
 
 
 @bot.event
@@ -92,11 +91,12 @@ async def custom(ctx):  # カスタムチーム分けbot 10人を赤チーム青
 
 @bot.command()
 async def lolinfo(ctx):
+    watcher = RiotWatcher(key)
     region = 'jp1'
     summonername = 'takosuramen'
     me = watcher.summoner.by_name(region, summonername)
     my_ranked_stats = watcher.league.positions_by_summoner(region, me['id'])
-    recentmatchlists = watcher.match.matchlist_by_account_recent(region,me['accountId'])
+    recentmatchlists = watcher.match.matchlist_by_account_recent(region, me['accountId'])
     await ctx.send(recentmatchlists)
     await ctx.send(my_ranked_stats)
 
