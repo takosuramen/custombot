@@ -93,7 +93,7 @@ async def custom(ctx):  # カスタムチーム分けbot 10人を赤チーム青
 @bot.command()
 async def lolinfo(ctx):
     region = 'jp1'
-    summonername = takosuramen
+    summonername = 'takosuramen'
     me = watcher.summoner.by_name(region, summonername)
     my_ranked_stats = watcher.league.positions_by_summoner(region, me['id'])
     recentmatchlists = watcher.match.matchlist_by_account_recent(region,me['accountId'])
