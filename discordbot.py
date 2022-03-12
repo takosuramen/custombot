@@ -95,7 +95,7 @@ async def lolinfo(ctx):
     region = 'jp1'
     summonername = 'takosuramen'
     me = watcher.summoner.by_name(region, summonername)
-    my_ranked_stats = watcher.league.positions_by_summoner(region, me['id'])
+    my_ranked_stats = watcher.league.by_summoner(region, me['id'])
     recentmatchlists = watcher.match.matchlist_by_account_recent(region, me['accountId'])
     await ctx.send(recentmatchlists)
     await ctx.send(my_ranked_stats)
