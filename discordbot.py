@@ -4,6 +4,7 @@ from os import getenv
 import traceback
 import random
 import datetime
+from riotwatcher import RiotWatcher
 
 intents = discord.Intents.default()
 intents.members = True  # これをしないとget_memberとかできなくなる
@@ -13,6 +14,9 @@ BOT_COMMAND_CHANNEL_ID = 951092799623790622  # 892796029362139170
 taikibeya_ID = 707947337770860574  # 892796029362139172  # こっちはテストサーバー用
 red_team_ID = 270573338752057355  # 948050118031077376
 blue_team_ID = 269884896258818049  # 948050118572138536
+
+key = getenv('riotkey')
+watcher = RiotWatcher(key)
 
 
 @bot.event
@@ -84,6 +88,17 @@ async def custom(ctx):  # カスタムチーム分けbot 10人を赤チーム青
     await ctx.send("-----赤チーム-----" + bot.get_user(*red_team).display_name + "-----青チーム-----" + bot.get_user(*blue_team).display_name)
     # await ctx.send(*[bot.get_user(ID).display_name for ID in user_ID])
     # ユーザーネームはサーバーごとに変えれるのでそのサーバーでの名前display_nameを表示
+
+
+@bot.command()
+async def lolinfo(ctx)
+    region = 'jp1'
+    summonername = takosuramen
+    me = watcher.summoner.by_name(region, summonername)
+    my_ranked_stats = watcher.league.positions_by_summoner(my_region, me['id'])
+    recentmatchlists = watcher.match.matchlist_by_account_recent(my_region,me['accountId'])
+    await ctx.send(recentmatchlists)
+
 
 token = getenv('DISCORD_BOT_TOKEN')  # HEROKUの環境設定のほうに書いてあるtokenを取得
 bot.run(token)
