@@ -10,7 +10,7 @@ intents = discord.Intents.default()
 intents.members = True  # これをしないとget_memberとかできなくなる
 bot = commands.Bot(command_prefix='$', intents=intents, help_command=None)  # command_prefixはコマンドの前につけるやつ　スラッシュコマンドはdiscordのもともとついている機能と被るため$にした
 
-  #BOT関連の発言をするテキストチャンネルおよびチーム振り分け待機VC、赤チーム青チームVCのチャンネルID
+  # BOT関連の発言をするテキストチャンネルおよびチーム振り分け待機VC、赤チーム青チームVCのチャンネルID
 BOT_COMMAND_CHANNEL_ID = 951092799623790622  # 892796029362139170
 taikibeya_ID = 707947337770860574  # 892796029362139172  # こっちはテストサーバー用
 red_team_ID = 270573338752057355  # 948050118031077376
@@ -36,7 +36,7 @@ async def on_ready():  # BOT起動時に日本時間でいつ起動したかを�
 
 
 @bot.command()
-async def ping(ctx):  #BOTがちゃんと稼働してるかどうか確認するためのこまんど
+async def ping(ctx):  # BOTがちゃんと稼働してるかどうか確認するためのこまんど
     await ctx.send('HELLO!')
 
 
@@ -61,7 +61,7 @@ async def blue(ctx):  # 発言者をblueチームに送るコマンド
 
 @bot.command()
 async def custom(ctx):  # カスタムチーム分けbot 10人を赤チーム青チーム5人ずつランダムに分ける
-    #チーム振り分け待機部屋、赤青チームのチャンネル、コマンドが実行されたguild(=サーバー)を取得
+    # チーム振り分け待機部屋、赤青チームのチャンネル、コマンドが実行されたguild(=サーバー)を取得
     red_team = bot.get_channel(red_team_ID)
     blue_team = bot.get_channel(blue_team_ID)
     taikibeya = bot.get_channel(taikibeya_ID)
@@ -80,7 +80,7 @@ async def custom(ctx):  # カスタムチーム分けbot 10人を赤チーム青
     blueteam.append(user_ID[1:6])  # シャッフルしたuser_IDの1~5番目をblueteamに6~10番目をredteamに追加することでランダムに
     redteam.append(user_ID[6:11])
 
-    for i in range(5):  #ユーザーIDからユーザーを取得して振り分けられたチームのチャンネルに移動させる
+    for i in range(5):  # ユーザーIDからユーザーを取得して振り分けられたチームのチャンネルに移動させる
         bluemem = await guild.fetch_member(blueteam[i])
         redmem = await guild.fetch_member(redteam[i])
         await bluemem.move_to(blue_team)
@@ -93,13 +93,13 @@ async def custom(ctx):  # カスタムチーム分けbot 10人を赤チーム青
 
 @bot.command()
 async def lolinfo(ctx, arg):
-    #RiotのAPIサーバーがよく落ちていてその時はbadrequestを返す。それを判別して返答する機能も欲しい
+    # RiotのAPIサーバーがよく落ちていてその時はbadrequestを返す。それを判別して返答する機能も欲しい
     watcher = LolWatcher(key)
-    #情報を取得するリージョン（地域）とユーザー名を設定
+    # 情報を取得するリージョン（地域）とユーザー名を設定
     region = 'jp1'
     summonername = arg
     me = watcher.summoner.by_name(region, summonername)
-    my_ranked_stats = watcher.league.by_summoner(region, me['id'])  #その人のランクを取得
+    my_ranked_stats = watcher.league.by_summoner(region, me['id'])  # その人のランクを取得
     recentmatchlists = watcher.match.matchlist_by_puuid(region, me['accountId'])  # 最近のマッチ履歴を取得
     await ctx.send(recentmatchlists)
     await ctx.send(my_ranked_stats)
