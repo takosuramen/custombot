@@ -10,7 +10,7 @@ intents = discord.Intents.default()
 intents.members = True  # これをしないとget_memberとかできなくなる
 bot = commands.Bot(command_prefix='$', intents=intents, help_command=None)  # command_prefixはコマンドの前につけるやつ　スラッシュコマンドはdiscordのもともとついている機能と被るため$にした
 
-  # BOT関連の発言をするテキストチャンネルおよびチーム振り分け待機VC、赤チーム青チームVCのチャンネルID
+# BOT関連の発言をするテキストチャンネルおよびチーム振り分け待機VC、赤チーム青チームVCのチャンネルID
 BOT_COMMAND_CHANNEL_ID = 951092799623790622  # 892796029362139170
 taikibeya_ID = 707947337770860574  # 892796029362139172  # こっちはテストサーバー用
 red_team_ID = 270573338752057355  # 948050118031077376
@@ -41,7 +41,7 @@ async def ping(ctx):  # BOTがちゃんと稼働してるかどうか確認す�
 
 
 @bot.command()
-async def help(ctx):  #helpコマンド
+async def help(ctx):  # helpコマンド
     await ctx.send('$ping\n    BOTが稼働してたらHELLOと返事を返すよ\n$custom\n    カスタム待機部屋にいる人を自動的にRED,BLUEにわけるよ\n    コマンドを打つ人がVCにいてVCの人数が10人じゃないといけないよ')
 
 
