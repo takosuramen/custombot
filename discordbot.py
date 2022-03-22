@@ -46,6 +46,11 @@ async def help(ctx):  # helpコマンド
 
 
 @bot.command()
+async def test(ctx,num1,num2):
+    await ctx.send(f'{num1}と{num2}')
+
+
+@bot.command()
 async def blue(ctx):  # 発言者をblueチームに送るコマンド
     blue_team = bot.get_channel(blue_team_ID)
     voice = ctx.author.voice
