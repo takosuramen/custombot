@@ -46,7 +46,7 @@ async def help(ctx):  # helpコマンド
 
 
 @bot.command()
-async def test(ctx, num1 = 5: int, num2 = 5: int):
+async def test(ctx, num1: int = 5, num2: int = 5):
     await ctx.send(f'{num1}と{num2}')
 
 
