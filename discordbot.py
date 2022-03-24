@@ -97,7 +97,7 @@ async def custom(ctx, num1: int = 5, num2: int = 5):  # カスタムチーム分
         await bluemem.move_to(blue_team)
 
     for i in range(num2):
-        redteam.append(user_ID[num1+i])
+        redteam.append(user_ID[num1 + i])
         redmem = await guild.fetch_member(redteam[i])
         await redmem.move_to(red_team)
 
