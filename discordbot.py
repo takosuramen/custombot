@@ -88,8 +88,8 @@ async def custom(ctx, num1: int = 5, num2: int = 5):  # カスタムチーム分
     blueteam = []
     redteam = []
     random.shuffle(user_ID)
-    blueteam.append(user_ID[0:num1])  # シャッフルしたuser_IDの1~num1番目をblueteamにnum1~sum番目をredteamに追加することでランダムに
-    redteam.append(user_ID[num1:])
+    blueteam.extend(user_ID[0:num1])  # シャッフルしたuser_IDの1~num1番目をblueteamにnum1~sum番目をredteamに追加することでランダムに
+    redteam.extend(user_ID[num1:])
 
     for i in range(num1):  # ユーザーIDからユーザーを取得して振り分けられたチームのチャンネルに移動させる
         blueteam.append(user_ID[i])
@@ -101,8 +101,8 @@ async def custom(ctx, num1: int = 5, num2: int = 5):  # カスタムチーム分
         redmem = await guild.fetch_member(redteam[i])
         await redmem.move_to(red_team)
 
-    message = "-----赤チーム-----" + *[bot.get_user(redteam[ID]).display_name for ID in len(redteam)] + "-----青チーム-----" + *[bot.get_user(blueteam[ID]).display_name for ID in len(blueteam)]
-    await ctx.send(message)
+    # message = "-----赤チーム-----" + [bot.get_user(redteam[ID]).display_name for ID in len(redteam)] + "-----青チーム-----" + [bot.get_user(blueteam[ID]).display_name for ID in len(blueteam)]
+    # await ctx.send(message)
     # await ctx.send(*[bot.get_user(ID).display_name for ID in user_ID])
     # ユーザーネームはサーバーごとに変えれるのでそのサーバーでの名前display_nameを表示
 
