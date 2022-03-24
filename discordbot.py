@@ -101,7 +101,8 @@ async def custom(ctx, num1: int = 5, num2: int = 5):  # カスタムチーム分
         redmem = await guild.fetch_member(redteam[i])
         await redmem.move_to(red_team)
 
-    await ctx.send("-----赤チーム-----" + bot.get_user(*redteam).display_name + "-----青チーム-----" + bot.get_user(*blueteam).display_name)
+    message = "-----赤チーム-----" + bot.get_user(*redteam).display_name + "-----青チーム-----" + bot.get_user(*blueteam).display_name
+    await ctx.send(message)
     # await ctx.send(*[bot.get_user(ID).display_name for ID in user_ID])
     # ユーザーネームはサーバーごとに変えれるのでそのサーバーでの名前display_nameを表示
 
