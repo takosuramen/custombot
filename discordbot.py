@@ -70,7 +70,7 @@ async def blue(ctx):  # 発言者をblueチームに送るコマンド
 
 
 @bot.command()
-async def custom(ctx, num1: int = 5, num2: int = 5):  # カスタムチーム分けbot 青チーム赤チーム5人ずつランダムに分ける
+async def custom(ctx, num1: int = 5, num2: int = 5):  # カスタムチーム分けbot 青チーム赤チーム5人ずつランダムに分ける argが指定されたらその人数ずつにわける
     # チーム振り分け待機部屋、赤青チームのチャンネル、コマンドが実行されたguild(=サーバー)を取得
     red_team = bot.get_channel(red_team_ID)
     blue_team = bot.get_channel(blue_team_ID)
@@ -84,6 +84,7 @@ async def custom(ctx, num1: int = 5, num2: int = 5):  # カスタムチーム分
     if len(user_ID) != sum:  # VCの人数が(num1 + num2)人か確認
         await ctx.send(f'VCの人数が{sum}人じゃないとチーム分けできません')
         return
+    await ctx.send(f'青チーム{num1}人赤チーム{num2}人でチーム分けをします')
 
     blueteam = []
     redteam = []
