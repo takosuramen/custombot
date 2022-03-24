@@ -92,12 +92,12 @@ async def custom(ctx, num1: int = 5, num2: int = 5):  # カスタムチーム分
     redteam.extend(user_ID[num1:])
 
     for i in range(num1):  # ユーザーIDからユーザーを取得して振り分けられたチームのチャンネルに移動させる
-        blueteam.append(user_ID[i])
+        # blueteam.append(user_ID[i])
         bluemem = await guild.fetch_member(blueteam[i])
         await bluemem.move_to(blue_team)
 
     for i in range(num2):
-        redteam.append(user_ID[num1 + i])
+        # redteam.append(user_ID[num1 + i])
         redmem = await guild.fetch_member(redteam[i])
         await redmem.move_to(red_team)
 
