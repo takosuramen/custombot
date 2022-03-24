@@ -65,7 +65,7 @@ async def blue(ctx):  # 発言者をblueチームに送るコマンド
 
 
 @bot.command()
-async def custom(ctx):  # カスタムチーム分けbot 10人を赤チーム青チーム5人ずつランダムに分ける
+async def custom(ctx, num1:int = 5, num2:int = 5):  # カスタムチーム分けbot 10人を赤チーム青チーム5人ずつランダムに分ける
     # チーム振り分け待機部屋、赤青チームのチャンネル、コマンドが実行されたguild(=サーバー)を取得
     red_team = bot.get_channel(red_team_ID)
     blue_team = bot.get_channel(blue_team_ID)
@@ -75,20 +75,23 @@ async def custom(ctx):  # カスタムチーム分けbot 10人を赤チーム青
     #  user_name = [member.name for member in taikibeya.members]  # 待機部屋に接続しているメンバーの名前を取得　IDだけでいいかも
     user_ID = [member.id for member in taikibeya.members]         # 同IDを取得
     await ctx.send("VCに" + str(len(user_ID)) + "人接続しています")
-    if len(user_ID) != 10:  # VCの人数が10人か確認
-        await ctx.send('VCの人数が10人じゃないとチーム分けできません')
+    sum = num1 + num2
+    if len(user_ID) != sum:  # VCの人数が(num1 + num2)人か確認
+        await ctx.send(f'VCの人数が{sum}人じゃないとチーム分けできません')
         return
 
     blueteam = []
     redteam = []
     random.shuffle(user_ID)
-    blueteam.append(user_ID[1:6])  # シャッフルしたuser_IDの1~5番目をblueteamに6~10番目をredteamに追加することでランダムに
-    redteam.append(user_ID[6:11])
+    blueteam.append(user_ID[1:num1])  # シャッフルしたuser_IDの1~num1番目をblueteamにnum1~sum番目をredteamに追加することでランダムに
+    redteam.append(user_ID[num1:sum])
 
-    for i in range(5):  # ユーザーIDからユーザーを取得して振り分けられたチームのチャンネルに移動させる
+    for i in range(num1):  # ユーザーIDからユーザーを取得して振り分けられたチームのチャンネルに移動させる
         bluemem = await guild.fetch_member(blueteam[i])
-        redmem = await guild.fetch_member(redteam[i])
         await bluemem.move_to(blue_team)
+
+    for i in range(num2):
+        redmem = await guild.fetch_member(redteam[i])
         await redmem.move_to(red_team)
 
     await ctx.send("-----赤チーム-----" + bot.get_user(*red_team).display_name + "-----青チーム-----" + bot.get_user(*blue_team).display_name)
