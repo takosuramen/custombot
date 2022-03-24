@@ -12,15 +12,15 @@ bot = commands.Bot(command_prefix='$', intents=intents, help_command=None)  # co
 
 # BOT関連の発言をするテキストチャンネルおよびチーム振り分け待機VC、赤チーム青チームVCのチャンネルID
 BOT_COMMAND_CHANNEL_ID = 892796029362139170  # こっちはテストサーバー用
-taikibeya_ID = 892796029362139172  
-red_team_ID = 948050118031077376  
+taikibeya_ID = 892796029362139172
+red_team_ID = 948050118031077376
 blue_team_ID = 948050118572138536
-
-# BOT_COMMAND_CHANNEL_ID = 951092799623790622 # 本サーバー用
-# taikibeya_ID = 707947337770860574
-# red_team_ID = 270573338752057355
-# blue_team_ID = 269884896258818049
-
+"""
+BOT_COMMAND_CHANNEL_ID = 951092799623790622 # 本サーバー用
+taikibeya_ID = 707947337770860574
+red_team_ID = 270573338752057355
+blue_team_ID = 269884896258818049
+"""
 key = getenv('riotkey')
 
 
