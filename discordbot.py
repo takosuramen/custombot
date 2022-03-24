@@ -88,8 +88,8 @@ async def custom(ctx, num1: int = 5, num2: int = 5):  # カスタムチーム分
     blueteam = []
     redteam = []
     random.shuffle(user_ID)
-    blueteam.append(user_ID[1:num1])  # シャッフルしたuser_IDの1~num1番目をblueteamにnum1~sum番目をredteamに追加することでランダムに
-    redteam.append(user_ID[num1:sum])
+    blueteam.append(user_ID[0:num1])  # シャッフルしたuser_IDの1~num1番目をblueteamにnum1~sum番目をredteamに追加することでランダムに
+    redteam.append(user_ID[num1:])
 
     for i in range(num1):  # ユーザーIDからユーザーを取得して振り分けられたチームのチャンネルに移動させる
         bluemem = await guild.fetch_member(blueteam[i])
