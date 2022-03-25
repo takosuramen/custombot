@@ -123,6 +123,7 @@ async def lolinfo(ctx, arg):
     await ctx.send(my_ranked_stats)
     versions = watcher.data_dragon.versions_for_region(region)
     champions_version = versions['n']['champion']
+    await ctx.send(champions_version)
     try:
         response = watcher.summoner.by_name(region, 'this_is_probably_not_anyones_summoner_name')
         await ctx.send(response)
