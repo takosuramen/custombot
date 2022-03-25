@@ -103,9 +103,7 @@ async def custom(ctx, num1: int = 5, num2: int = 5):  # カスタムチーム分
     # ユーザーネームはサーバーごとに変えれるのでそのサーバーでの名前display_nameを表示
 
 
-
 # all objects are returned (by default) as a dict
-
 # For Riot's API, the 404 status code indicates that the requested data wasn't found and
 # should be expected to occur in normal operation, as in the case of a an
 # invalid summoner name, match ID, etc.
