@@ -124,7 +124,7 @@ async def lolinfo(ctx, arg):
     versions = watcher.data_dragon.versions_for_region(region)
     champions_version = versions['n']['champion']
     current_champ_list = watcher.data_dragon.champions(champions_version)
-    await ctx.send(current_champ_list)
+    print(current_champ_list)
     try:
         response = watcher.summoner.by_name(region, 'this_is_probably_not_anyones_summoner_name')
         await ctx.send(response)
@@ -137,7 +137,7 @@ async def lolinfo(ctx, arg):
             await ctx.send('Summoner with that ridiculous name not found.')
         else:
             raise
-        
+
     summonername = arg
     me = watcher.summoner.by_name(region, summonername)
     my_ranked_stats = watcher.league.by_summoner(region, me['id'])  # その人のランクを取得
