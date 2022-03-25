@@ -127,6 +127,7 @@ async def lolinfo(ctx, arg):
     await ctx.send(current_champ_list)
     try:
         response = watcher.summoner.by_name(region, 'this_is_probably_not_anyones_summoner_name')
+        await ctx.send(response)
     except ApiError as err:
         if err.response.status_code == 429:
             await ctx.send('We should retry in {} seconds.'.format(err.headers['Retry-After']))
@@ -136,7 +137,7 @@ async def lolinfo(ctx, arg):
             await ctx.send('Summoner with that ridiculous name not found.')
         else:
             raise
-
+        
     summonername = arg
     me = watcher.summoner.by_name(region, summonername)
     my_ranked_stats = watcher.league.by_summoner(region, me['id'])  # その人のランクを取得
