@@ -105,32 +105,14 @@ async def custom(ctx, num1: int = 5, num2: int = 5):  # カスタムチーム分
 
 
 # all objects are returned (by default) as a dict
-# First we get the latest version of the game from data dragon
-versions = lol_watcher.data_dragon.versions_for_region(my_region)
-champions_version = versions['n']['champion']
-
-# Lets get some champions
-current_champ_list = lol_watcher.data_dragon.champions(champions_version)
-print(current_champ_list)
 
 # For Riot's API, the 404 status code indicates that the requested data wasn't found and
 # should be expected to occur in normal operation, as in the case of a an
 # invalid summoner name, match ID, etc.
-#
 # The 429 status code indicates that the user has sent too many requests
 # in a given amount of time ("rate limiting").
 
-try:
-    response = lol_watcher.summoner.by_name(my_region, 'this_is_probably_not_anyones_summoner_name')
-except ApiError as err:
-    if err.response.status_code == 429:
-        print('We should retry in {} seconds.'.format(err.headers['Retry-After']))
-        print('this retry-after is handled by default by the RiotWatcher library')
-        print('future requests wait until the retry-after time passes')
-    elif err.response.status_code == 404:
-        print('Summoner with that ridiculous name not found.')
-    else:
-        raise
+
 @bot.command()
 async def lolinfo(ctx, arg):
     # RiotのAPIサーバーがよく落ちていてその時はbadrequestを返す。それを判別して返答する機能も欲しい
@@ -141,6 +123,22 @@ async def lolinfo(ctx, arg):
     await ctx.send(me)
     my_ranked_stats = watcher.league.by_summoner(region, me['id'])
     await ctx.send(my_ranked_stats)
+    versions = watcher.data_dragon.versions_for_region(region)
+    champions_version = versions['n']['champion']
+    current_champ_list = watcher.data_dragon.champions(champions_version)
+    await ctx.send(current_champ_list)
+    try:
+        response = watcher.summoner.by_name(region, 'this_is_probably_not_anyones_summoner_name')
+    except ApiError as err:
+        if err.response.status_code == 429:
+            await ctx.send('We should retry in {} seconds.'.format(err.headers['Retry-After']))
+            await ctx.send('this retry-after is handled by default by the RiotWatcher library')
+            await ctx.send('future requests wait until the retry-after time passes')
+        elif err.response.status_code == 404:
+            await ctx.send('Summoner with that ridiculous name not found.')
+        else:
+            raise
+
     summonername = arg
     me = watcher.summoner.by_name(region, summonername)
     my_ranked_stats = watcher.league.by_summoner(region, me['id'])  # その人のランクを取得
