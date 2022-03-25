@@ -123,8 +123,6 @@ async def lolinfo(ctx, arg):
     await ctx.send(my_ranked_stats)
     versions = watcher.data_dragon.versions_for_region(region)
     champions_version = versions['n']['champion']
-    current_champ_list = watcher.data_dragon.champions(champions_version)
-    print(current_champ_list)
     try:
         response = watcher.summoner.by_name(region, 'this_is_probably_not_anyones_summoner_name')
         await ctx.send(response)
@@ -135,8 +133,6 @@ async def lolinfo(ctx, arg):
             await ctx.send('future requests wait until the retry-after time passes')
         elif err.response.status_code == 404:
             await ctx.send('Summoner with that ridiculous name not found.')
-        else:
-            raise
 
     summonername = arg
     me = watcher.summoner.by_name(region, summonername)
