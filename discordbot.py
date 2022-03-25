@@ -129,7 +129,7 @@ async def lolinfo(ctx, arg):
         await ctx.send(response)
     except ApiError as err:
         if err.response.status_code == 404:
-            await ctx.send(f'{}は存在しません')
+            await ctx.send(f'{arg}は存在しません')
 
     summonername = arg
     me = watcher.summoner.by_name(region, summonername)
