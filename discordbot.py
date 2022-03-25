@@ -47,12 +47,7 @@ async def ping(ctx):  # BOTがちゃんと稼働してるかどうか確認す�
 
 @bot.command()
 async def help(ctx):  # helpコマンド
-    await ctx.send('$ping\n    BOTが稼働してたらHELLOと返事を返すよ\n$custom\n    カスタム待機部屋にいる人を自動的に青5人赤5人にわけるよ\n$custom X Y\n    カスタム待機部屋にいる人を自動的に青X人赤Y人に分けるよ\n    コマンドを打つ人がVCにいてVCの人数が10人じゃないといけないよ')
-
-
-@bot.command()
-async def test(ctx, num1: int = 5, num2: int = 5):
-    await ctx.send(f'{num1}と{num2}')
+    await ctx.send('$ping\n    BOTが稼働してたらHELLOと返事を返すよ\n$custom or $custom <青チームの人数> <赤チームの人数>\n    カスタム待機部屋にいる人をランダムに青赤にわけるよ(指定しないと5:5)')
 
 
 @bot.command()
