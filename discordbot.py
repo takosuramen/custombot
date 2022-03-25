@@ -117,7 +117,7 @@ async def lolinfo(ctx, arg):
     watcher = LolWatcher(key)
     # 情報を取得するリージョン（地域）とユーザー名を設定
     region = 'jp1'
-    me = watcher.summoner.by_name(region, 'takosuramen')
+    me = watcher.summoner.by_name(region, arg)
     await ctx.send(me)
     my_ranked_stats = watcher.league.by_summoner(region, me['id'])
     await ctx.send(my_ranked_stats)
@@ -128,12 +128,8 @@ async def lolinfo(ctx, arg):
         response = watcher.summoner.by_name(region, 'this_is_probably_not_anyones_summoner_name')
         await ctx.send(response)
     except ApiError as err:
-        if err.response.status_code == 429:
-            await ctx.send('We should retry in {} seconds.'.format(err.headers['Retry-After']))
-            await ctx.send('this retry-after is handled by default by the RiotWatcher library')
-            await ctx.send('future requests wait until the retry-after time passes')
-        elif err.response.status_code == 404:
-            await ctx.send('Summoner with that ridiculous name not found.')
+        if err.response.status_code == 404:
+            await ctx.send(f'{}は存在しません')
 
     summonername = arg
     me = watcher.summoner.by_name(region, summonername)
