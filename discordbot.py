@@ -130,7 +130,7 @@ async def lolinfo(ctx, arg):
     except ApiError as err:
         if err.response.status_code == 404:
             await ctx.send(f'{arg}は存在しません')
-    recentmatchlists = watcher.match.matchlist_by_puuid(region, me['puuId'])  # 最近のマッチ履歴を取得
+    recentmatchlists = watcher.match.matchlist_by_puuid(region, me['puuid'])  # 最近のマッチ履歴を取得
     await ctx.send(recentmatchlists)
 
 
