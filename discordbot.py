@@ -125,7 +125,7 @@ async def lolinfo(ctx, arg):
     champions_version = versions['n']['champion']
     await ctx.send(champions_version)
     try:
-        response = watcher.summoner.by_name(region, 'this_is_probably_not_anyones_summoner_name')
+        response = watcher.summoner.by_name(region, arg)
         await ctx.send(response)
     except ApiError as err:
         if err.response.status_code == 404:
