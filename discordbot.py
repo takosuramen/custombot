@@ -130,13 +130,8 @@ async def lolinfo(ctx, arg):
     except ApiError as err:
         if err.response.status_code == 404:
             await ctx.send(f'{arg}は存在しません')
-
-    summonername = arg
-    me = watcher.summoner.by_name(region, summonername)
-    my_ranked_stats = watcher.league.by_summoner(region, me['id'])  # その人のランクを取得
-    recentmatchlists = watcher.match.matchlist_by_puuid(region, me['accountId'])  # 最近のマッチ履歴を取得
+    recentmatchlists = watcher.match.matchlist_by_puuid(region, me['puuId'])  # 最近のマッチ履歴を取得
     await ctx.send(recentmatchlists)
-    await ctx.send(my_ranked_stats)
 
 
 token = getenv('DISCORD_BOT_TOKEN')  # HEROKUの環境設定のほうに書いてあるtokenを取得
