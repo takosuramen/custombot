@@ -142,7 +142,7 @@ async def lolinfo(ctx, arg):
 
     for i in match_data['info']['participants']:
         if me['puuid'] in i['puuid']:
-            match_detail = match_data['info']['participants'][i]['summonerId']
+            match_detail = i['summonerId']
     await ctx.send(match_detail)
 
 
