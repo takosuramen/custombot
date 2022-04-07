@@ -139,7 +139,7 @@ async def lolinfo(ctx, arg):
     await ctx.send(recentmatchlists)
 
     match_data = watcher.match.by_id('asia', recentmatchlists[0])
-    match_detail = match_data['info']['participants']['summonerId']
+    match_detail = match_data['info'][0]['summonerId']
     await ctx.send(match_detail)
 
 
