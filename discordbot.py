@@ -137,12 +137,11 @@ async def rank(ctx, *args):
     rank = watcher.league.by_summoner(region, me['id'])
     await ctx.send(f'{rank[0]["summonerName"]}   {rank[0]["tier"]} {rank[0]["rank"]} {rank[0]["leaguePoints"]}LP')
 
-    embed=discord.Embed(title="Solo Queue", color=0x00ffff)
+    embed = discord.Embed(title="Solo Queue", color=0x00ffff)
     embed.set_thumbnail(url=f"http://ddragon.leagueoflegends.com/cdn/{champions_version}/img/profileicon/{me['profileIconId']}.png")
     embed.add_field(name=rank[0]["summonerName"], value=f'{rank[0]["tier"]} {rank[0]["rank"]} {rank[0]["leaguePoints"]}LP', inline=False)
     await ctx.send(embed=embed)
 
-    
 
     recentmatchlists = watcher.match.matchlist_by_puuid('asia', me['puuid'], type='ranked')  # 最近のマッチ履歴を取得
     # await ctx.send(recentmatchlists)
