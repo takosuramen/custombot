@@ -148,10 +148,10 @@ async def rank(ctx, arg):
         for i in match_data['info']['participants']:
             if me['puuid'] in i['puuid']:
                 if i['win']:
-                    winloss += '○'
+                    winloss += '〇'
                     win += 1
                 else:
-                    winloss += '×'
+                    winloss += '✖'
                     loss += 1
     await ctx.send(f'{winloss}\n{win}勝{loss}敗')
 
