@@ -137,7 +137,7 @@ async def rank(ctx, arg):
     champions_version = versions['n']['champion']
     # await ctx.send(champions_version)
 
-    recentmatchlists = watcher.match.matchlist_by_puuid('asia', me['puuid'], type'ranked')  # 最近のマッチ履歴を取得
+    recentmatchlists = watcher.match.matchlist_by_puuid('asia', me['puuid'], type='ranked')  # 最近のマッチ履歴を取得
     # await ctx.send(recentmatchlists)
 
     winloss = '最近の勝敗'
