@@ -120,23 +120,24 @@ async def lolinfo(ctx, arg):
 
     try:
         response = watcher.summoner.by_name(region, arg)
-        await ctx.send(response)
+        # await ctx.send(response)
     except ApiError as err:
         if err.response.status_code == 404:
             await ctx.send(f'{arg}は存在しません')
+            return
 
     me = watcher.summoner.by_name(region, arg)
-    await ctx.send(me)
+    # await ctx.send(me)
 
-    my_ranked_stats = watcher.league.by_summoner(region, me['id'])
-    await ctx.send(my_ranked_stats)
+    rank = watcher.league.by_summoner(region, me['id'])
+    await ctx.send(f'{rank['summonerName']} {rank['tier']}{rank['rank']}{rank['leaguePoints']}LP{rank['wins']}wins{rank['losses']}losses')
 
     versions = watcher.data_dragon.versions_for_region(region)
     champions_version = versions['n']['champion']
-    await ctx.send(champions_version)
+    # await ctx.send(champions_version)
 
     recentmatchlists = watcher.match.matchlist_by_puuid('asia', me['puuid'])  # 最近のマッチ履歴を取得
-    await ctx.send(recentmatchlists)
+    # await ctx.send(recentmatchlists)
 
     winloss = '最近の勝敗'
     win = 0
@@ -151,7 +152,7 @@ async def lolinfo(ctx, arg):
                 else:
                     winloss += '×'
                     loss += 1
-    await ctx.send(f'{win}勝{loss}敗{winloss}')
+    await ctx.send(f'{winloss}\n{win}勝{loss}敗')
 
 token = getenv('DISCORD_BOT_TOKEN')  # HEROKUの環境設定のほうに書いてあるtokenを取得
 bot.run(token)
