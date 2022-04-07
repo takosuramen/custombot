@@ -141,7 +141,7 @@ async def lolinfo(ctx, arg):
     winloss = '最近の勝敗'
     win = 0
     loss = 0
-    for num in len(recentmatchlists)
+    for num in len(recentmatchlists):
         match_data = watcher.match.by_id('asia', recentmatchlists[num])
         for i in match_data['info']['participants']:
             if me['puuid'] in i['puuid']:
