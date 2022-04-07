@@ -138,7 +138,7 @@ async def lolinfo(ctx, arg):
     recentmatchlists = watcher.match.matchlist_by_puuid('asia', me['puuid'])  # 最近のマッチ履歴を取得
     await ctx.send(recentmatchlists)
 
-    match_deta = watcher.match.by_id('asia', recentmatchlists[0])
+    match_data = watcher.match.by_id('asia', recentmatchlists[0])
     match_detail = match_data['info']['participants']
     await ctx.send(match_detail)
 
