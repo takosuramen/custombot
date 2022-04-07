@@ -158,7 +158,7 @@ async def rank(ctx, *args):
                 else:
                     winloss += 'x'
                     loss += 1
-    await ctx.send(f'直近{win+loss}試合 {winloss}\n{win}勝{loss}敗')
+    await ctx.send(f'{winloss}\n直近{win+loss}試合 {win}勝{loss}敗')
 
 token = getenv('DISCORD_BOT_TOKEN')  # HEROKUの環境設定のほうに書いてあるtokenを取得
 bot.run(token)
