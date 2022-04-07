@@ -113,7 +113,7 @@ async def custom(ctx, num1: int = 5, num2: int = 5):  # カスタムチーム分
 
 
 @bot.command()
-async def lolinfo(ctx, arg):
+async def rank(ctx, arg):
     # RiotのAPIサーバーがよく落ちていてその時はbadrequestを返す。それを判別して返答する機能も欲しい
     watcher = LolWatcher(key)
     # 情報を取得するリージョン（地域）とユーザー名を設定
