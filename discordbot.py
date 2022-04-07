@@ -135,7 +135,7 @@ async def rank(ctx, *args):
     # await ctx.send(champions_version)
 
     rank = watcher.league.by_summoner(region, me['id'])
-    await ctx.send(f'{rank[0]["summonerName"]}   {rank[0]["tier"]} {rank[0]["rank"]} {rank[0]["leaguePoints"]}LP')
+    # await ctx.send(f'{rank[0]["summonerName"]}   {rank[0]["tier"]} {rank[0]["rank"]} {rank[0]["leaguePoints"]}LP')
 
     embed = discord.Embed(title="Solo Queue", color=0x00ffff)
     embed.set_thumbnail(url=f"http://ddragon.leagueoflegends.com/cdn/{champions_version}/img/profileicon/{me['profileIconId']}.png")
@@ -153,10 +153,10 @@ async def rank(ctx, *args):
         for i in match_data['info']['participants']:
             if me['puuid'] in i['puuid']:
                 if i['win']:
-                    winloss += ':o:'
+                    winloss += 'o'
                     win += 1
                 else:
-                    winloss += ':x:'
+                    winloss += 'x'
                     loss += 1
     await ctx.send(f'直近{win+loss}試合 {winloss}\n{win}勝{loss}敗')
 
