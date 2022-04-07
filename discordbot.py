@@ -131,8 +131,8 @@ async def rank(ctx, *args):
     me = watcher.summoner.by_name(region, arg)
     # await ctx.send(me)
     versions = watcher.data_dragon.versions_for_region(region)
-        champions_version = versions['n']['champion']
-        # await ctx.send(champions_version)
+    champions_version = versions['n']['champion']
+    # await ctx.send(champions_version)
 
     rank = watcher.league.by_summoner(region, me['id'])
     await ctx.send(f'{rank[0]["summonerName"]}   {rank[0]["tier"]} {rank[0]["rank"]} {rank[0]["leaguePoints"]}LP')
