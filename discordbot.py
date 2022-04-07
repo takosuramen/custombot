@@ -130,7 +130,7 @@ async def lolinfo(ctx, arg):
     # await ctx.send(me)
 
     rank = watcher.league.by_summoner(region, me['id'])
-    await ctx.send(f'{rank['summonerName']} {rank['tier']}{rank['rank']}{rank['leaguePoints']}LP{rank['wins']}wins{rank['losses']}losses')
+    await ctx.send(f'{rank[summonerName]} {rank[tier]}{rank[rank]}{rank[leaguePoints]}LP{rank[wins]}wins{rank[losses]}losses')
 
     versions = watcher.data_dragon.versions_for_region(region)
     champions_version = versions['n']['champion']
