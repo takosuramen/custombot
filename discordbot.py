@@ -138,13 +138,20 @@ async def lolinfo(ctx, arg):
     recentmatchlists = watcher.match.matchlist_by_puuid('asia', me['puuid'])  # 最近のマッチ履歴を取得
     await ctx.send(recentmatchlists)
 
-    match_data = watcher.match.by_id('asia', recentmatchlists[0])
-
-    for i in match_data['info']['participants']:
-        if me['puuid'] in i['puuid']:
-            match_detail = i['summonerId']
-    await ctx.send(match_detail)
-
+    winloss = '最近の勝敗'
+    win = 0
+    loss = 0
+    for num in len(recentmatchlists)
+        match_data = watcher.match.by_id('asia', recentmatchlists[num])
+        for i in match_data['info']['participants']:
+            if me['puuid'] in i['puuid']:
+                if i['win']:
+                    winloss.append('○')
+                    win += 1
+                else:
+                    winloss.append('×')
+                    loss += 1
+    await ctx.send(f'{win}勝{loss}敗{winloss}')
 
 token = getenv('DISCORD_BOT_TOKEN')  # HEROKUの環境設定のほうに書いてあるtokenを取得
 bot.run(token)
