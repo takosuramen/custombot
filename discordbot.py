@@ -48,9 +48,9 @@ async def ping(ctx):  # BOTがちゃんと稼働してるかどうか確認す�
 
 @bot.command()
 async def help(ctx):  # helpコマンド
-    await ctx.send('```$ping```\nBOTが稼働してたらHELLOと返事を返すよ\n'\
-    '```$custom or $custom <青チームの人数> <赤チームの人数>```\nカスタム待機部屋にいる人をランダムに青赤にわけるよ(指定しないと5:5)\n'\
-    '```$rank <サモナー名>```\nその人のランク情報を表示するよ')
+    await ctx.send('```$ping```BOTが稼働してたらHELLOと返事を返すよ\n'\
+    '```$custom or $custom <青チームの人数> <赤チームの人数>```カスタム待機部屋にいる人をランダムに青赤にわけるよ(指定しないと5:5)\n'\
+    '```$rank <サモナー名>```その人のランク情報を表示するよ')
 
 
 @bot.command()
