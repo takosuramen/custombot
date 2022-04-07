@@ -142,7 +142,6 @@ async def rank(ctx, *args):
     embed.add_field(name=rank[0]["summonerName"], value=f'{rank[0]["tier"]} {rank[0]["rank"]} {rank[0]["leaguePoints"]}LP', inline=False)
     await ctx.send(embed=embed)
 
-
     recentmatchlists = watcher.match.matchlist_by_puuid('asia', me['puuid'], type='ranked')  # 最近のマッチ履歴を取得
     # await ctx.send(recentmatchlists)
 
