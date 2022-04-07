@@ -146,10 +146,10 @@ async def lolinfo(ctx, arg):
         for i in match_data['info']['participants']:
             if me['puuid'] in i['puuid']:
                 if i['win']:
-                    winloss.append('○')
+                    winloss += '○'
                     win += 1
                 else:
-                    winloss.append('×')
+                    winloss += '×'
                     loss += 1
     await ctx.send(f'{win}勝{loss}敗{winloss}')
 
