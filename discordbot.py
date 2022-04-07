@@ -152,7 +152,8 @@ async def lolinfo(ctx, arg):
                 else:
                     winloss += '×'
                     loss += 1
-    await ctx.send(f'{winloss}\n{win}勝{loss}敗')
+    kekka = rank["summonerName"] + rank["tier"] + rank["rank"] + rank["leaguePoints"] + "LP" + rank["wins"] + "wins" + rank["losses"] + "losses")
+    await ctx.send(kekka)
 
 token = getenv('DISCORD_BOT_TOKEN')  # HEROKUの環境設定のほうに書いてあるtokenを取得
 bot.run(token)
