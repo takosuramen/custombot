@@ -117,21 +117,29 @@ async def lolinfo(ctx, arg):
     watcher = LolWatcher(key)
     # 情報を取得するリージョン（地域）とユーザー名を設定
     region = 'jp1'
-    me = watcher.summoner.by_name(region, arg)
-    await ctx.send(me)
-    my_ranked_stats = watcher.league.by_summoner(region, me['id'])
-    await ctx.send(my_ranked_stats)
-    versions = watcher.data_dragon.versions_for_region(region)
-    champions_version = versions['n']['champion']
-    await ctx.send(champions_version)
+
     try:
         response = watcher.summoner.by_name(region, arg)
         await ctx.send(response)
     except ApiError as err:
         if err.response.status_code == 404:
             await ctx.send(f'{arg}は存在しません')
+
+    me = watcher.summoner.by_name(region, arg)
+    await ctx.send(me)
+
+    my_ranked_stats = watcher.league.by_summoner(region, me['id'])
+    await ctx.send(my_ranked_stats)
+
+    versions = watcher.data_dragon.versions_for_region(region)
+    champions_version = versions['n']['champion']
+    await ctx.send(champions_version)
+
     recentmatchlists = watcher.match.matchlist_by_puuid('asia', me['puuid'])  # 最近のマッチ履歴を取得
     await ctx.send(recentmatchlists)
+
+    match_detail = watcher.match.by_id('asia', last_match['gameId'])
+    await ctx.send(match_detail)
 
 
 token = getenv('DISCORD_BOT_TOKEN')  # HEROKUの環境設定のほうに書いてあるtokenを取得
