@@ -133,6 +133,11 @@ async def rank(ctx, *args):
 
     rank = watcher.league.by_summoner(region, me['id'])
     await ctx.send(f'{rank[0]["summonerName"]}   {rank[0]["tier"]} {rank[0]["rank"]} {rank[0]["leaguePoints"]}LP')
+    
+    embed=discord.Embed(title="Solo Queue", color=0x00ffff)
+    embed.set_thumbnail(url=f"http://ddragon.leagueoflegends.com/cdn/{champions_version}/img/profileicon/{me['profileIconId']}.png")
+    embed.add_field(name=rank[0]["summonerName"], value=f'{rank[0]["tier"]} {rank[0]["rank"]} {rank[0]["leaguePoints"]}LP', inline=False)
+    await ctx.send(embed=embed)
 
     versions = watcher.data_dragon.versions_for_region(region)
     champions_version = versions['n']['champion']
@@ -149,12 +154,12 @@ async def rank(ctx, *args):
         for i in match_data['info']['participants']:
             if me['puuid'] in i['puuid']:
                 if i['win']:
-                    winloss += '〇'
+                    winloss += ':o:'
                     win += 1
                 else:
-                    winloss += '✖'
+                    winloss += ':x:'
                     loss += 1
-    await ctx.send(f'{winloss}\n{win}勝{loss}敗')
+    await ctx.send(f'直近{win+loss}試合 {winloss}\n{win}勝{loss}敗')
 
 token = getenv('DISCORD_BOT_TOKEN')  # HEROKUの環境設定のほうに書いてあるtokenを取得
 bot.run(token)
