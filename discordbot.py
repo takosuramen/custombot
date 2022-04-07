@@ -130,7 +130,7 @@ async def lolinfo(ctx, arg):
     # await ctx.send(me)
 
     rank = watcher.league.by_summoner(region, me['id'])
-    await ctx.send(rank["summonerName"])
+    await ctx.send(rank[0]["summonerName"])
 
     versions = watcher.data_dragon.versions_for_region(region)
     champions_version = versions['n']['champion']
@@ -152,8 +152,7 @@ async def lolinfo(ctx, arg):
                 else:
                     winloss += '×'
                     loss += 1
-    kekka = rank["summonerName"] + rank["tier"] + rank["rank"] + rank["leaguePoints"] + "LP" + rank["wins"] + "wins" + rank["losses"] + "losses"
-    await ctx.send(kekka)
+    await ctx.send(f'{winloss}\n{win}勝{loss}敗')
 
 token = getenv('DISCORD_BOT_TOKEN')  # HEROKUの環境設定のほうに書いてあるtokenを取得
 bot.run(token)
