@@ -129,13 +129,11 @@ async def rank(ctx, *args):
             await ctx.send('try again later')
             return
         elif err.response.status_code == 404:
-            await ctx.send('名前が見つかりません')
+            await ctx.send(f'{arg}は存在しません')
             return
         else:
             raise
             return
-            # await ctx.send(f'{arg}は存在しません')
-    # await ctx.send(me)
 
     versions = watcher.data_dragon.versions_for_region(region)
     champions_version = versions['n']['champion']
