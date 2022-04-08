@@ -125,9 +125,13 @@ async def rank(ctx, *args):
     try:
         me = watcher.summoner.by_name(region, arg)
     except ApiError as err:
-        if err.me.status_code == 404:
-            await ctx.send(f'{arg}は存在しません')
-            return
+        if err.response.status_code == 429:
+            await ctx.send('try again later')
+        elif err.response.status_code == 404:
+            await ctx.send('名前が見つかりません')
+        else:
+            raise
+            # await ctx.send(f'{arg}は存在しません')
     # await ctx.send(me)
 
     versions = watcher.data_dragon.versions_for_region(region)
