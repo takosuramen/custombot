@@ -123,15 +123,13 @@ async def rank(ctx, *args):
     arg = ''.join(args)
 
     try:
-        response = watcher.summoner.by_name(region, arg)
-        # await ctx.send(response)
+        me = watcher.summoner.by_name(region, arg)
     except ApiError as err:
-        if err.response.status_code == 404:
+        if err.me.status_code == 404:
             await ctx.send(f'{arg}は存在しません')
             return
-
-    me = watcher.summoner.by_name(region, arg)
     # await ctx.send(me)
+
     versions = watcher.data_dragon.versions_for_region(region)
     champions_version = versions['n']['champion']
     # await ctx.send(champions_version)
@@ -141,7 +139,10 @@ async def rank(ctx, *args):
 
     embed = discord.Embed(title="Solo Queue", color=0x00ffff)
     embed.set_thumbnail(url=f"http://ddragon.leagueoflegends.com/cdn/{champions_version}/img/profileicon/{me['profileIconId']}.png")
-    embed.add_field(name=rank[0]["summonerName"], value=f'{rank[0]["tier"]} {rank[0]["rank"]} {rank[0]["leaguePoints"]}LP', inline=False)
+    if rank[0]:
+        embed.add_field(name=me["name"], value=f'ランクなし', inline=False)
+    else:
+        embed.add_field(name=rank[0]["summonerName"], value=f'{rank[0]["tier"]} {rank[0]["rank"]} {rank[0]["leaguePoints"]}LP', inline=False)
     await ctx.send(embed=embed)
 
     recentmatchlists = watcher.match.matchlist_by_puuid('asia', me['puuid'], type='ranked')  # 最近のマッチ履歴を取得
