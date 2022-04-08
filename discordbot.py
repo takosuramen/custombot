@@ -116,12 +116,13 @@ async def custom(ctx, num1: int = 5, num2: int = 5):  # カスタムチーム分
 
 @bot.command()
 async def rank(ctx, *args):
-    # RiotのAPIサーバーがよく落ちていてその時はbadrequestを返す。それを判別して返答する機能も欲しい
+    # RiotのAPIサーバーがおちている時はbadrequestを返す。それを判別して返答する機能も欲しい
     watcher = LolWatcher(key)
     # 情報を取得するリージョン（地域）とユーザー名を設定
     region = 'jp1'
     arg = ''.join(args)
 
+    # 429:APIのリクエスト制限に引っかかってたら出る　404:入力されたsummoner名が存在するかどうかを判定
     try:
         me = watcher.summoner.by_name(region, arg)
     except ApiError as err:
@@ -135,6 +136,7 @@ async def rank(ctx, *args):
             raise
             return
 
+    # 今のゲームのバージョンを受け取る（ゲーム内のプロフィールアイコンなどdatadragonのデータを利用する際に必要になる）
     versions = watcher.data_dragon.versions_for_region(region)
     champions_version = versions['n']['champion']
     # await ctx.send(champions_version)
@@ -142,6 +144,7 @@ async def rank(ctx, *args):
     rank = watcher.league.by_summoner(region, me['id'])
     # await ctx.send(f'{rank[0]["summonerName"]}   {rank[0]["tier"]} {rank[0]["rank"]} {rank[0]["leaguePoints"]}LP')
 
+    # discordのテキストチャットの埋め込み装飾embedの生成
     embed = discord.Embed(title="Solo Queue", color=0x00ffff)
     embed.set_thumbnail(url=f"http://ddragon.leagueoflegends.com/cdn/{champions_version}/img/profileicon/{me['profileIconId']}.png")
     if rank:
@@ -150,9 +153,10 @@ async def rank(ctx, *args):
         embed.add_field(name=me["name"], value='ランクなし', inline=False)
     await ctx.send(embed=embed)
 
-    recentmatchlists = watcher.match.matchlist_by_puuid('asia', me['puuid'], type='ranked')  # 最近のマッチ履歴を取得
+    recentmatchlists = watcher.match.matchlist_by_puuid('asia', me['puuid'], type='ranked')  # 最近のマッチ履歴を取得、デフォルトは20試合を取得
     # await ctx.send(recentmatchlists)
 
+    # マッチ履歴からプレイヤーが所属しているチーム側の勝敗を判定し表示
     winloss = '最近の勝敗'
     win = 0
     loss = 0
