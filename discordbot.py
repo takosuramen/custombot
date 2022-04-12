@@ -54,7 +54,7 @@ async def help(ctx):  # helpコマンド
 
 
 @bot.command()
-async def blue(ctx):  # 発言者をblueチームに送るコマンド
+async def blue(ctx):  # 発言者をblueチームに送るコマンド ちゃんとユーザーを移動させることができるかテスト用
     blue_team = bot.get_channel(blue_team_ID)
     voice = ctx.author.voice
     if voice is None:
