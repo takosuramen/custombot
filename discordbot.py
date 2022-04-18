@@ -89,20 +89,25 @@ async def custom(ctx, num1: int = 5, num2: int = 5):  # カスタムチーム分
     random.shuffle(user_ID)
     blueteam.extend(user_ID[0:num1])  # シャッフルしたuser_IDの1~num1番目をblueteamにnum1~sum番目をredteamに追加することでランダムに
     redteam.extend(user_ID[num1:])
+    
+    nameb = ''
+    namer
 
     for i in range(num1):  # ユーザーIDからユーザーを取得して振り分けられたチームのチャンネルに移動させる
         # blueteam.append(user_ID[i])
         bluemem = await guild.fetch_member(blueteam[i])
         await bluemem.move_to(blue_team)
+        nameb.append(f"@{bluemem}\n")
 
     for i in range(num2):
         # redteam.append(user_ID[num1 + i])
         redmem = await guild.fetch_member(redteam[i])
         await redmem.move_to(red_team)
+        namer.append(f"@{redmem}\n"}
 
     # embed = discord.Embed(title='カスタムチーム分け', color=0xfc7b03)
-    # embed.add_field(name='青チーム', value=[name + '\n' for name in bluemem.display_name], inline=True)
-    # embed.add_field(name='赤チーム', value=[name + '\n' for name in redmem.display_name], inline=True)
+    # embed.add_field(name='青チーム', value=, inline=True)
+    # embed.add_field(name='赤チーム', value=, inline=True)
     # await ctx.send(embed=embed)
     # message = "-----赤チーム-----" + [bot.get_user(redteam[ID]).display_name for ID in len(redteam)] + "-----青チーム-----" + [bot.get_user(blueteam[ID]).display_name for ID in len(blueteam)]
     # await ctx.send(message)
@@ -126,7 +131,7 @@ async def rank(ctx, *args):
     region = 'jp1'
     arg = ''.join(args)
 
-    # 429:APIのリクエスト制限に引っかかってたら出る　404:入力されたsummoner名が存在するかどうかを判定
+    # 429:APIのリクエスト数制限に引っかかってたら出る　404:入力されたsummoner名が存在するかどうかを判定
     try:
         me = watcher.summoner.by_name(region, arg)
     except ApiError as err:
