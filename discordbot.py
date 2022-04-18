@@ -22,7 +22,7 @@ taikibeya_ID = 707947337770860574
 red_team_ID = 270573338752057355
 blue_team_ID = 269884896258818049
 
-key = getenv('riotkey')  # riot apiのキー
+key = getenv('riotkey')  # riot apiのキー　申請通ったので無期限でリクエスト制限も緩め
 
 
 @bot.event
