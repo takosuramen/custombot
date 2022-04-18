@@ -158,7 +158,7 @@ async def rank(ctx, *args):
         embed.add_field(name=me["name"], value='ランクなし', inline=False)
     await ctx.send(embed=embed)
 
-    recentmatchlists = watcher.match.matchlist_by_puuid('asia', me['puuid'], type='ranked')  
+    recentmatchlists = watcher.match.matchlist_by_puuid('asia', me['puuid'], type='ranked')
     # 最近のマッチ履歴を取得、デフォルトは20試合を取得,ソロランクの試合のみを取得
     # await ctx.send(recentmatchlists)
     """
