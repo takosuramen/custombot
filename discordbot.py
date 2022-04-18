@@ -103,7 +103,7 @@ async def custom(ctx, num1: int = 5, num2: int = 5):  # カスタムチーム分
         # redteam.append(user_ID[num1 + i])
         redmem = await guild.fetch_member(redteam[i])
         await redmem.move_to(red_team)
-        namer.append(f"@{redmem}\n"}
+        namer.append(f"@{redmem}\n")
 
     embed = discord.Embed(title='カスタムチーム分け', color=0xfc7b03)
     embed.add_field(name='青チーム', value=bluemem, inline=True)
