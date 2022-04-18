@@ -22,7 +22,7 @@ taikibeya_ID = 707947337770860574
 red_team_ID = 270573338752057355
 blue_team_ID = 269884896258818049
 
-key = getenv('riotkey')
+key = getenv('riotkey') # riot apiのキー
 
 
 @bot.event
@@ -91,7 +91,7 @@ async def custom(ctx, num1: int = 5, num2: int = 5):  # カスタムチーム分
     redteam.extend(user_ID[num1:])
     
     nameb = ''
-    namer
+    namer = ''
 
     for i in range(num1):  # ユーザーIDからユーザーを取得して振り分けられたチームのチャンネルに移動させる
         # blueteam.append(user_ID[i])
@@ -105,22 +105,14 @@ async def custom(ctx, num1: int = 5, num2: int = 5):  # カスタムチーム分
         await redmem.move_to(red_team)
         namer.append(f"@{redmem}\n"}
 
-    # embed = discord.Embed(title='カスタムチーム分け', color=0xfc7b03)
-    # embed.add_field(name='青チーム', value=, inline=True)
-    # embed.add_field(name='赤チーム', value=, inline=True)
-    # await ctx.send(embed=embed)
+    embed = discord.Embed(title='カスタムチーム分け', color=0xfc7b03)
+    embed.add_field(name='青チーム', value=bluemem, inline=True)
+    embed.add_field(name='赤チーム', value=redmem, inline=True)
+    await ctx.send(embed=embed)
     # message = "-----赤チーム-----" + [bot.get_user(redteam[ID]).display_name for ID in len(redteam)] + "-----青チーム-----" + [bot.get_user(blueteam[ID]).display_name for ID in len(blueteam)]
     # await ctx.send(message)
     # await ctx.send(*[bot.get_user(ID).display_name for ID in user_ID])
     # ユーザーネームはサーバーごとに変えれるのでそのサーバーでの名前display_nameを表示
-
-
-# all objects are returned (by default) as a dict
-# For Riot's API, the 404 status code indicates that the requested data wasn't found and
-# should be expected to occur in normal operation, as in the case of a an
-# invalid summoner name, match ID, etc.
-# The 429 status code indicates that the user has sent too many requests
-# in a given amount of time ("rate limiting").
 
 
 @bot.command()
