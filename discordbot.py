@@ -22,7 +22,7 @@ taikibeya_ID = 707947337770860574
 red_team_ID = 270573338752057355
 blue_team_ID = 269884896258818049
 
-key = getenv('riotkey') # riot apiのキー
+key = getenv('riotkey')  # riot apiのキー
 
 
 @bot.event
@@ -89,7 +89,7 @@ async def custom(ctx, num1: int = 5, num2: int = 5):  # カスタムチーム分
     random.shuffle(user_ID)
     blueteam.extend(user_ID[0:num1])  # シャッフルしたuser_IDの1~num1番目をblueteamにnum1~sum番目をredteamに追加することでランダムに
     redteam.extend(user_ID[num1:])
-    
+
     nameb = ''
     namer = ''
 
@@ -119,11 +119,15 @@ async def custom(ctx, num1: int = 5, num2: int = 5):  # カスタムチーム分
 async def rank(ctx, *args):
     # RiotのAPIサーバーがおちている時はbadrequestを返す。それを判別して返答する機能も欲しい
     watcher = LolWatcher(key)
-    # 情報を取得するリージョン（地域）とユーザー名を設定
+    """
+    情報を取得するリージョン（地域）とユーザー名を設定
+    LOLのユーザー名はスペースを入れることもできるので*argsで複数引数をもらってから全部結合
+    """
     region = 'jp1'
     arg = ''.join(args)
 
-    # 429:APIのリクエスト数制限に引っかかってたら出る　404:入力されたsummoner名が存在するかどうかを判定
+    # 429:APIのリクエスト数制限に引っかかってたら出る
+    # 404:入力されたsummoner名が存在するかどうかを判定し存在しなかったら出る
     try:
         me = watcher.summoner.by_name(region, arg)
     except ApiError as err:
@@ -154,10 +158,14 @@ async def rank(ctx, *args):
         embed.add_field(name=me["name"], value='ランクなし', inline=False)
     await ctx.send(embed=embed)
 
-    recentmatchlists = watcher.match.matchlist_by_puuid('asia', me['puuid'], type='ranked')  # 最近のマッチ履歴を取得、デフォルトは20試合を取得
+    recentmatchlists = watcher.match.matchlist_by_puuid('asia', me['puuid'], type='ranked')  
+    # 最近のマッチ履歴を取得、デフォルトは20試合を取得,ソロランクの試合のみを取得
     # await ctx.send(recentmatchlists)
-
-    # マッチ履歴からプレイヤーが所属しているチーム側の勝敗を判定し表示
+    """
+    マッチ履歴からプレイヤーが所属しているチーム側の勝敗を判定し表示
+    マッチデータの中にはそのマッチに参加していた10人分のデータが格納されているので
+    入力されたsummonerのpuuidと一致するデータの勝敗だけカウントする
+    """
     winloss = '最近の勝敗'
     win = 0
     loss = 0
