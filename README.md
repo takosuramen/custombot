@@ -30,4 +30,5 @@ RiotAPIの仕様上スペースの有無や大文字小文字の区別はしな�
 
 この画像はLOLカスタムロビーが待機部屋でそこからLOL RED, LOL BLUEにチーム分けされた時の画像です。
 ![image](20500023e945e322b9584126ffa27517.png)
-設定の参考https://qiita.com/1ntegrale9/items/aa4b373e8895273875a8
+
+[Discord Bot 最速チュートリアル【Python&Heroku&GitHub】](https://qiita.com/1ntegrale9/items/aa4b373e8895273875a8)
