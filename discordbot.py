@@ -30,7 +30,7 @@ async def on_command_error(ctx, error):  # エラーはいたときに教えて�
     orig_error = getattr(error, "original", error)
     error_msg = ''.join(traceback.TracebackException.from_exception(orig_error).format())
     await ctx.send(error_msg)
-    await ctx.send("$helpを参考にコマンドを入力してみてね"
+    await ctx.send("$helpを参考にコマンドを入力してみてね")
 
 
 @bot.event
